@@ -1,779 +1,474 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <title>Chandan Kumar Portfolio — 3D Neon Edition</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<head>
+  <meta charset="utf-8" />
+  <title>Chandan Kumar — 3D DevOps Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Original fonts & styles (kept unchanged) -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" />
-    <link rel="stylesheet" href="css/aos.css" />
-    <link rel="stylesheet" href="css/ionicons.min.css" />
-    <link rel="stylesheet" href="css/flaticon.css" />
-    <link rel="stylesheet" href="css/icomoon.css" />
-    <link rel="stylesheet" href="css/style.css" />
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Extra libraries for 3D/animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 
-    <style>
-      /* ----------------------
-         Global overrides + neon/glass theme
-         Keep this after other CSS so it overrides where needed
-         ----------------------*/
-      :root{
-        --bg-900:#05060a;
-        --bg-800:#081226;
-        --neon-1: #66ffea;
-        --neon-2: #7c5cff;
-        --muted: rgba(255,255,255,0.08);
-        --glass: rgba(255,255,255,0.04);
-        --glass-2: rgba(255,255,255,0.02);
-      }
-      html,body{height:100%;background: linear-gradient(180deg,var(--bg-900),var(--bg-800));color:#eafcff;font-family:'Poppins',system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
-      a{color:var(--neon-1);}
-      /* fix for navbar to be glassy */
-      .ftco_navbar, .ftco-navbar-light {
-        background: linear-gradient(90deg, rgba(124,92,255,0.04), rgba(102,255,234,0.02));
-        border-bottom: 1px solid rgba(255,255,255,0.04);
-        backdrop-filter: blur(8px);
-      }
-      /* Hero improvements */
-      .hero{position:relative;min-height:100vh;display:flex;align-items:center}
-      /* particle canvas */
-      #particlesCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-      /* keep container above particles */
-      .container, .site-wrap{position:relative;z-index:2}
-      /* neon brand */
-      .navbar-brand{font-weight:700;color:var(--neon-1);text-shadow:0 0 12px rgba(102,255,234,0.12)}
-      /* 3D cube (CSS) */
-      .cube-wrap{width:360px;height:360px;perspective:1200px;margin:0 auto}
-      .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 900ms cubic-bezier(.2,.9,.3,1)}
-      .cube__face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:18px;background:linear-gradient(135deg, rgba(124,92,255,0.12), rgba(102,255,234,0.06));box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(8px);}
-      .cube__face--front{transform:translateZ(180px)}
-      .cube__face--back{transform:rotateY(180deg) translateZ(180px)}
-      .cube__face--right{transform:rotateY(90deg) translateZ(180px)}
-      .cube__face--left{transform:rotateY(-90deg) translateZ(180px)}
-      .cube__face--top{transform:rotateX(90deg) translateZ(180px)}
-      .cube__face--bottom{transform:rotateX(-90deg) translateZ(180px)}
-      .cube h5{letter-spacing:1px;color:var(--neon-2);text-shadow:0 0 12px rgba(124,92,255,0.12)}
-      /* hover to rotate */
-      .cube-wrap:hover .cube{transform:rotateX(12deg) rotateY(-18deg)}
-      /* neon buttons */
-      .neon-btn{padding:.7rem 1.1rem;border-radius:12px;border:1px solid rgba(102,255,234,0.18);background:linear-gradient(180deg, rgba(102,255,234,0.03), rgba(124,92,255,0.02));color:var(--neon-1);font-weight:700;box-shadow:0 6px 30px rgba(124,92,255,0.06)}
-      /* glass cards */
-      .neon-card{padding:1.4rem;border-radius:14px;border:1px solid rgba(124,92,255,0.12);background:linear-gradient(180deg,var(--glass),transparent);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-      .neon-border{position:relative}
-      .neon-border::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(90deg,var(--neon-1),var(--neon-2));filter:blur(14px);opacity:0.12;z-index:-1}
-      /* floating small dot */
-      .dot{width:8px;height:8px;border-radius:50%;background:var(--neon-1);box-shadow:0 0 18px rgba(102,255,234,0.85)}
-      /* tilt effect for cards and project thumbnails */
-      .tilt{transition:transform .28s cubic-bezier(.2,.9,.3,1);will-change:transform}
-      .tilt:hover{transform:translateY(-8px) rotateX(3deg) rotateY(6deg)}
-      /* typing text style (kept but improved) */
-      #typing-animation{display:inline-block;color:#fff;font-weight:700}
-      /* responsive tweaks */
-      @media (max-width:991px){.cube-wrap{width:300px;height:300px;margin:40px auto}}
-      @media (max-width:575px){.cube-wrap{width:220px;height:220px}.hero .display-5{font-size:1.6rem}}
-      /* keep your zoom-effect intact */
-      .zoom-effect{overflow:hidden;transition:transform 0.3s ease-out}
-      .zoom-effect:hover{transform:scale(1.06)}
-      /* subtle section headings */
-      .big{color:rgba(255,255,255,0.06);font-weight:800}
-      .section-title{color:var(--neon-1);text-shadow:0 0 12px rgba(102,255,234,0.08)}
-    </style>
-  </head>
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-    <!-- Particles canvas (lightweight) -->
-    <canvas id="particlesCanvas"></canvas>
+  <style>
+    :root{
+      --bg-900:#04050a;
+      --neon-1:#66ffea;
+      --accent:#7c5cff;
+      --glass: rgba(255,255,255,0.03);
+      --muted: rgba(255,255,255,0.06);
+    }
+    html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#eafcff;background:linear-gradient(180deg,var(--bg-900),#071226);}
+    /* Full-screen 3D canvas behind everything */
+    #three-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    /* page content sits above canvas */
+    .site { position: relative; z-index: 2; }
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">Chandan Kumar</a>
-        <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav"
-          aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="oi oi-menu"></span> Menu
-        </button>
+    /* NAV */
+    nav {
+      position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width:1100px; z-index: 5;
+      background: linear-gradient(90deg, rgba(124,92,255,0.04), rgba(102,255,234,0.02));
+      border-radius: 12px; padding: 12px 18px; display:flex; align-items:center; justify-content:space-between;
+      border: 1px solid rgba(255,255,255,0.04); backdrop-filter: blur(8px);
+    }
+    nav .brand { font-weight:700; color:var(--neon-1); letter-spacing:0.6px; }
+    nav .navlinks { display:flex; gap:14px; align-items:center; }
+    nav .navlinks a { color: rgba(255,255,255,0.9); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px; transition: .18s; }
+    nav .navlinks a:hover { background: rgba(255,255,255,0.02); color:var(--neon-1); box-shadow:0 6px 18px rgba(102,255,234,0.06); }
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav nav ml-auto">
-            <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-            <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-            <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-            <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-            <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-          </ul>
-        </div>
+    /* HERO */
+    header.hero { min-height: 92vh; display:flex; align-items:center; padding: 8vh 6vw 6vh; position:relative; overflow:hidden; }
+    .hero-left { max-width: 720px; }
+    .hero-h1 { font-size: clamp(28px,6vw,48px); line-height:1.02; margin:0 0 12px; color:#e9fefd; text-shadow:0 0 18px rgba(102,255,234,0.06); }
+    .hero-sub { color: #cfeff0; font-size:1.05rem; margin-bottom:18px; }
+    .cta { display:flex; gap:12px; margin-top:18px; }
+    .btn-primary {
+      background: linear-gradient(180deg,var(--neon-1),var(--accent)); color:#021; padding:10px 18px; border-radius:12px; border:none; font-weight:700; cursor:pointer;
+      box-shadow: 0 8px 30px rgba(124,92,255,0.06), 0 0 28px rgba(102,255,234,0.06);
+    }
+    .btn-outline { border:1px solid rgba(255,255,255,0.08); color:#fff; padding:10px 18px; border-radius:12px; background:transparent; cursor:pointer; }
+
+    /* floating card right side (keeps original images intact) */
+    .hero-right { position:absolute; right:6vw; top:18vh; width:420px; max-width:40vw; pointer-events:auto; }
+    .floating-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: 18px; padding:16px; border:1px solid rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+      box-shadow: 0 12px 50px rgba(2,6,23,0.6);
+    }
+    .floating-card .cube-area { height:260px; display:flex; align-items:center; justify-content:center; }
+
+    /* Sections */
+    section { padding:80px 6vw; position:relative; }
+    .section-title { color:var(--neon-1); font-size:1.6rem; margin-bottom:18px; letter-spacing:.6px; }
+    .glass { background:var(--glass); border-radius:12px; padding:18px; border:1px solid rgba(255,255,255,0.04); backdrop-filter: blur(6px); }
+
+    /* Projects */
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+    .project-card { overflow:hidden; border-radius:12px; border:1px solid rgba(255,255,255,0.04); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; transition: transform .25s; }
+    .project-card:hover { transform: translateY(-8px); box-shadow:0 22px 60px rgba(2,6,23,0.6); }
+
+    /* TECHS: we'll animate these in as they appear */
+    .techs { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-top:18px; }
+    .tech { width:92px; height:92px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); }
+    .tech img { width:68px; height:68px; object-fit:contain; }
+
+    /* scroll smooth */
+    html { scroll-behavior: smooth; }
+
+    /* mobile tweaks */
+    @media (max-width:900px) {
+      nav { left:8px; transform:none; width:calc(100% - 16px); }
+      .hero-right { display:none; }
+      header.hero { padding-top:90px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Three.js canvas element (Three renderer will append here) -->
+  <div id="three-container" style="position:fixed; inset:0; z-index:0; pointer-events:none;"></div>
+
+  <div class="site">
+    <!-- Navbar -->
+    <nav>
+      <div class="brand">Chandan Kumar</div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about-section">About</a>
+        <a href="#resume-section">Resume</a>
+        <a href="#project-section">Projects</a>
+        <a href="#tech-section">Technologies</a>
+        <a href="#contact-section">Contact</a>
       </div>
     </nav>
 
-    <!-- HERO (enhanced) -->
-    <section id="home-section" class="hero">
-      <div class="home-slider owl-carousel">
-        <div class="slider-item">
-          <div class="overlay"></div>
-          <div class="container">
-            <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-              <!-- left: image (kept) -->
-              <div class="one-third js-fullheight order-md-last img" style="background-image:url(images/about.jpg);">
-                <div class="overlay"></div>
-              </div>
-
-              <!-- right: content + 3D cube -->
-              <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                <div class="text">
-                  <span class="subheading">Hello!</span>
-                  <h1 class="mb-4 mt-3">I'm <span>Chandan Kumar</span></h1>
-
-                  <!-- improved typing animation -->
-                  <div id="typing-animation" aria-live="polite"></div>
-
-                  <h2 class="mt-3">A Passionate DevOps & Cloud Engineer</h2>
-
-                  <p class="mt-3">
-                    <a href="https://hashnode.com/@chandan-cloudops" class="btn btn-primary py-3 px-4 neon-btn">Blogs</a>
-                    <a href="https://github.com/chandan-cloudops" class="btn btn-white btn-outline-white py-3 px-4" style="border-radius:12px">My works</a>
-                  </p>
-
-                  <div class="mt-4 d-flex gap-3">
-                    <!-- Cube -->
-                    <div class="cube-wrap tilt" style="margin-right:12px">
-                      <div class="cube" id="mainCube" role="img" aria-label="3D cube">
-                        <div class="cube__face cube__face--front"><div><h5>NEON</h5></div></div>
-                        <div class="cube__face cube__face--back"><div><h5>LAB</h5></div></div>
-                        <div class="cube__face cube__face--right"><div><small>Particles</small></div></div>
-                        <div class="cube__face cube__face--left"><div><small>UX</small></div></div>
-                        <div class="cube__face cube__face--top"><div><small>Motion</small></div></div>
-                        <div class="cube__face cube__face--bottom"><div><small>CSS</small></div></div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <div class="neon-card neon-border mb-3" style="max-width:220px">
-                        <h6 class="mb-1">Interactive 3D</h6>
-                        <small class="text-muted">Hover the cube — click to pulse.</small>
-                      </div>
-
-                      <div class="neon-card neon-border" style="max-width:220px">
-                        <h6 class="mb-1">Particles</h6>
-                        <small class="text-muted">Lightweight canvas background</small>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
+    <!-- HERO -->
+    <header id="home" class="hero">
+      <div class="hero-left" style="padding-right:24px;">
+        <div style="margin-top:40px;">
+          <h1 class="hero-h1">Hi, I'm <span style="color:var(--neon-1)">Chandan Kumar</span></h1>
+          <div id="typing" class="hero-sub">DevOps Engineer • Cloud • Kubernetes • Terraform</div>
+          <div class="cta">
+            <button class="btn-primary" onclick="location.href='#project-section'">Explore Works</button>
+            <button class="btn-outline" onclick="location.href='https://github.com/chandan-cloudops'">My GitHub</button>
           </div>
         </div>
-      </div> <!-- .home-slider -->
-    </section>
+      </div>
 
-    <!-- ABOUT (kept structure, enhanced styles) -->
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-      <div class="container">
-        <div class="row">
-          <!-- Left Side: Image and Profile Details (kept img src) -->
-          <div class="col-md-5 col-lg-4 d-flex align-items-stretch">
-            <div class="img-about img d-flex align-items-stretch">
-              <div class="overlay">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="about-img">
-                      <img src="images/aboutmediu.jpeg" class="img-fluid rounded b-shadow-a" alt="Profile Image">
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 mt-4">
-                    <div class="skill-mf">
-                      <h4 class="title-s">Technical Skills</h4>
-
-                      <!-- Keep your progress bars - styled by existing CSS -->
-                      <div class="progress-wrapper">
-                        <p><span>Configuration Management</span> <span class="pull-right">70%</span></p>
-                        <div class="progress"><div class="progress-bar bg-primary" role="progressbar" style="width: 70%;"></div></div>
-                      </div>
-
-                      <div class="progress-wrapper">
-                        <p><span>AWS & GCP Cloud</span> <span class="pull-right">85%</span></p>
-                        <div class="progress"><div class="progress-bar bg-success" role="progressbar" style="width: 85%;"></div></div>
-                      </div>
-
-                      <div class="progress-wrapper">
-                        <p><span>Infrastructure as Code (IaC)</span> <span class="pull-right">85%</span></p>
-                        <div class="progress"><div class="progress-bar bg-info" role="progressbar" style="width: 85%;"></div></div>
-                      </div>
-
-                      <div class="progress-wrapper">
-                        <p><span>CI/CD Tools</span> <span class="pull-right">90%</span></p>
-                        <div class="progress"><div class="progress-bar bg-warning" role="progressbar" style="width: 90%;"></div></div>
-                      </div>
-
-                      <div class="progress-wrapper">
-                        <p><span>Monitoring Tools</span> <span class="pull-right">80%</span></p>
-                        <div class="progress"><div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;"></div></div>
-                      </div>
-
-                      <div class="progress-wrapper">
-                        <p><span>Containerization & Orchestration</span> <span class="pull-right">80%</span></p>
-                        <div class="progress"><div class="progress-bar bg-white" role="progressbar" style="width: 80%;"></div></div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
+      <!-- right floating card with small cube (keeps your cube concept) -->
+      <div class="hero-right">
+        <div class="floating-card glass">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div><strong>Interactive 3D</strong><div style="font-size:12px;color:#cfeff0">Hover & explore</div></div>
+            <div style="display:flex;gap:8px">
+              <div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--neon-1)"></div>
+              <div class="dot" style="width:10px;height:10px;border-radius:50%;background:var(--accent)"></div>
+            </div>
+          </div>
+          <div class="cube-area">
+            <!-- small decorative cube (CSS faces) -->
+            <div class="cube-wrap" style="width:200px;height:200px;perspective:1000px">
+              <div class="cube" id="insideCube" style="width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s">
+                <div style="position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg,rgba(124,92,255,0.12),rgba(102,255,234,0.06));display:flex;align-items:center;justify-content:center">K8s</div>
+                <div style="position:absolute;inset:0;transform:rotateY(90deg);border-radius:12px;background:linear-gradient(135deg,rgba(102,255,234,0.06),rgba(124,92,255,0.02));display:flex;align-items:center;justify-content:center">TF</div>
+                <div style="position:absolute;inset:0;transform:rotateY(180deg);border-radius:12px;background:linear-gradient(135deg,rgba(124,92,255,0.06),rgba(102,255,234,0.02));display:flex;align-items:center;justify-content:center">AWS</div>
               </div>
             </div>
           </div>
+          <div style="margin-top:10px;font-size:13px;color:#cfeff0">Lightweight 3D scene behind the page — icons orbit and float.</div>
+        </div>
+      </div>
+    </header>
 
-          <!-- Right Side: About content (kept content, added small improvements) -->
-          <div class="col-md-7 col-lg-8 pl-lg-5 pb-5">
-            <div class="row justify-content-start pb-3">
-              <div class="col-md-12 heading-section ftco-animate">
-                <h1 class="big">About</h1>
-                <h2 class="mb-4">About Me</h2>
-                <p>👋 Hi, I’m <strong>Chandan Kumar</strong>, a dedicated DevOps Engineer with hands-on experience in building and managing cloud-native solutions. I thrive in optimizing development and operations to create scalable, efficient, and robust systems.</p>
-
-                <div class="row mt-3">
-                  <div class="col-md-6">
-                    <ul>
-                      <li><strong>💼 AWS Cloud Expertise:</strong> Architecting and optimizing cloud infrastructures using AWS.</li>
-                      <li><strong>🐧 Linux:</strong> System hardening and tuning for production workloads.</li>
-                      <li><strong>🌐 Git:</strong> Branching strategies, PRs, and code-quality flows.</li>
-                    </ul>
-                  </div>
-                  <div class="col-md-6">
-                    <ul>
-                      <li><strong>🚀 CI/CD:</strong> Jenkins, GitHub Actions, ArgoCD pipelines.</li>
-                      <li><strong>🐳 Containers:</strong> Docker, Kubernetes, Helm charts.</li>
-                      <li><strong>🛠 IaC:</strong> Terraform + Ansible automation.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="counter-wrap ftco-animate d-flex mt-md-3">
-                  <div class="text">
-                    <p class="mb-4"><span class="number counter" data-number="10">0</span> <span>+</span> <span>&nbsp; Projects Completed</span></p>
-                    <p><a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-primary py-3 px-3">Visit My LinkedIn</a></p>
-                  </div>
-                </div>
-
-              </div>
+    <!-- ABOUT -->
+    <section id="about-section">
+      <h3 class="section-title">About Me</h3>
+      <div class="glass">
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+          <img src="images/aboutmediu.jpeg" alt="Chandan" style="width:220px;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,0.6)">
+          <div style="flex:1">
+            <p>Hello — I’m <strong>Chandan Kumar</strong>, a DevOps & Cloud Engineer focused on building reliable, observable, and automated infrastructures. I design CI/CD, IaC, monitoring solutions and production-ready Kubernetes clusters on cloud providers.</p>
+            <div style="margin-top:12px">
+              <a class="btn-primary" href="https://hashnode.com/@chandan-cloudops">Read my blogs</a>
+              <a class="btn-outline" href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/">LinkedIn</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RESUME (kept) -->
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>Driven and detail-oriented DevOps Engineer with 3+ years of experience. Proficient in AWS, GCP, Kubernetes, Jenkins, Git, Docker, Prometheus, Grafana, Ansible, and Terraform.</p>
-          </div>
+    <!-- RESUME -->
+    <section id="resume-section">
+      <h3 class="section-title">Resume</h3>
+      <div class="glass">
+        <!-- Keep your resume content (shortened for clarity) -->
+        <p>DevOps experience with AWS, GCP, Azure, Kubernetes, Terraform, Jenkins, Prometheus & Grafana.</p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="project-section">
+      <h3 class="section-title">Projects</h3>
+      <div class="projects-grid">
+        <div class="project-card">
+          <a class="zoom-effect" href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" style="display:block;height:140px;background-image:url('images/proj_1.png');background-size:cover;border-radius:8px"></a>
+          <h4>Air-Gapped Kubernetes Cluster</h4>
+          <p>Guide to run Kubernetes in an isolated environment.</p>
         </div>
-
-        <!-- Experience rows (kept original entries) -->
-        <div class="row">
-          <h1 class="big-4">Experience</h1>
-          <div class="underline"></div>
+        <div class="project-card">
+          <a class="zoom-effect" href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" style="display:block;height:140px;background-image:url('images/proj_2.png');background-size:cover;border-radius:8px"></a>
+          <h4>AKS on Custom VNet</h4>
+          <p>Terraform + AKS + NGINX Ingress + Certs.</p>
         </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">January 2023 - November 2024</span>
-              <h2>Liane Care</h2>
-              <span class="position">Freelance Consultant DevOps</span>
-              <p class="mt-4">
-                <ul>
-                  <li>Designed and managed CI/CD pipelines for application deployments using Jenkins, ArgoCD, and GitHub Actions.</li>
-                  <li>Set up monitoring and alerting solutions with Prometheus and Grafana for Kubernetes clusters and cloud resources.</li>
-                  <li>Automated cloud infrastructure using Terraform and Ansible, reducing provisioning time and human error.</li>
-                </ul>
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">December 2022 - August 2023</span>
-              <h2>SupplyOp Software</h2>
-              <span class="position">Freelance Consultant DevOps</span>
-              <p class="mt-4">
-                <ul>
-                  <li>Designed and implemented a comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes, and Terraform.</li>
-                  <li>Automated cloud resource provisioning with Terraform and Ansible, improving scalability and reducing costs.</li>
-                </ul>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Continue rest of resume as-is (kept) -->
-        <br><br>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">May 2022 - November 2022</span>
-              <h2>Oodles Technologies</h2>
-              <span class="position">Sr. Associate Consultant DevOps</span>
-              <p class="mt-4">
-                <ul>
-                  <li>Managed end-to-end DevOps processes, including source code management, CI/CD, and containerization using Git, Jenkins, and Docker.</li>
-                </ul>
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">October 2019 - January 2022</span>
-              <h2>Ekstasis Technologies Pvt Ltd</h2>
-              <span class="position">DevOps Engineer</span>
-              <p class="mt-4">
-                <ul>
-                  <li>Configured and managed cloud infrastructure using AWS services such as EC2, S3, RDS, VPC, and IAM.</li>
-                </ul>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Education kept -->
-        <div class="row">
-          <h1 class="big-4">Education</h1>
-          <div class="underline"></div>
-        </div>
-
-        <br>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">2013-2017</span>
-              <h2>Bachelor of Engineering</h2>
-              <span class="position">SJB Institute of Technology, Bengaluru</span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate neon-card tilt">
-              <span class="date">2011-2013</span>
-              <h2>Higher Secondary School</h2>
-              <span class="position">Mahabodhi College, Gaya</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-6 text-center ftco-animate">
-            <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
-          </div>
+        <div class="project-card">
+          <a class="zoom-effect" href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" style="display:block;height:140px;background-image:url('images/proj_3.png');background-size:cover;border-radius:8px"></a>
+          <h4>Private AKS + Bastion + ACR</h4>
+          <p>Secure AKS architecture best practices.</p>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS (kept structure, improved cards) -->
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4 section-title">Projects</h2>
-            <p>Below are the sample DevOps & Data-Science projects on Complete Deployment.</p>
-          </div>
-        </div>
-
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end project-card tilt neon-card" style="width:100%">
-              <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="block-20 zoom-effect" style="background-image: url('images/proj_1.png');height:220px;background-size:cover;border-radius:8px;display:block"></a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster">Setting Up an Air-Gapped Kubernetes Cluster</a></h3>
-                <p>This comprehensive guide walks you through the setup of an air-gapped Kubernetes cluster using Terraform and manual image registries.</p>
-              </div>
+    <!-- TECHNOLOGIES (this section will animate in with GSAP when scrolled into view) -->
+    <section id="tech-section">
+      <h3 class="section-title">Technologies</h3>
+      <div class="glass">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px">
+          <div style="flex:1 1 320px">
+            <h4 style="margin:0 0 8px">Tools & Cloud</h4>
+            <p style="margin:0 0 12px;color:#cfeff0">AWS, Azure, GCP, Kubernetes, Jenkins, Terraform, Docker, GitHub, Prometheus, Grafana.</p>
+            <div class="techs" id="tech-icons">
+              <!-- icons will be visible (they already exist as images on disk, we use them here) -->
+              <div class="tech"><img src="images/aws.png" alt="AWS"></div>
+              <div class="tech"><img src="images/azure.png" alt="Azure"></div>
+              <div class="tech"><img src="images/gcp.png" alt="GCP"></div>
+              <div class="tech"><img src="images/kubernetes.png" alt="Kubernetes"></div>
+              <div class="tech"><img src="images/jenkins.png" alt="Jenkins"></div>
             </div>
           </div>
 
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end project-card tilt neon-card" style="width:100%">
-              <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="block-20 zoom-effect" style="background-image: url('images/proj_2.png');height:220px;background-size:cover;border-radius:8px;display:block"></a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2">Deploying an Azure AKS Cluster on a Custom Virtual Network</a></h3>
-                <p>Guide to create AKS cluster, configure NGINX Ingress, External DNS and Let's Encrypt for SSL; deploy a sample app.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry project-card tilt neon-card" style="width:100%">
-              <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="block-20 zoom-effect" style="background-image: url('images/proj_3.png');height:220px;background-size:cover;border-radius:8px;display:block"></a>
-              <div class="text mt-3 float-right d-block">
-                <h3 class="heading"><a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03">Azure Private AKS with Bastion Host and ACR</a></h3>
-                <p>Secure private AKS architecture using a Bastion host and private ACR for image management and secure deployments.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- extra projects preview row -->
-        <div class="row mt-4">
-          <div class="col-12 text-center">
-            <a href="https://github.com/chandan-cloudops" class="btn btn-primary py-3 px-5">More projects on Github</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COUNTERS & CONTACT (kept) -->
-    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-        <div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number counter" data-number="10">0</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number counter" data-number="10">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number counter" data-number="50">0</strong>
-                <span>Mentored Students</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number counter" data-number="20">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-        <div class="row justify-content-center">
-          <div class="col-md-7 ftco-animate text-center">
-            <h2>More projects on<span> Github  </span> </h2>
-            <div class="heading">
-              <h4> I love to solve business problems &amp; uncover hidden Automation stories </h4>
-              <br />
-              <p><a href="https://github.com/chandan-cloudops" class="btn btn-primary py-3 px-5">GitHub</a></p>
+          <div style="flex:0 1 340px">
+            <h4 style="margin:0 0 8px">3D DevOps Ring</h4>
+            <p style="margin:0 0 12px;color:#cfeff0">Watch the icons orbit in the background; this ring highlights the tools I use every day.</p>
+            <div class="glass" style="height:120px;display:grid;place-items:center">
+              <small style="color:#cfeff0">Background 3D ring is active — scroll to see Tech icons animate.</small>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT (kept content) -->
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
-          </div>
-        </div>
-
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center neon-card tilt">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-map-signs"></span></div>
-              <h3 class="mb-4">Address</h3>
-              <p>Bihar, India</p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center neon-card tilt">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-phone2"></span></div>
-              <h3 class="mb-4">Contact Number</h3>
-              <p><a href="tel://0101010101">+91-7204181903</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center neon-card tilt">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-paper-plane"></span></div>
-              <h3 class="mb-4">Email Address</h3>
-              <p><a href="mailto:info@yoursite.com">chandan.cloudopsgmail.com</a></p>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center neon-card tilt">
-              <div class="icon d-flex align-items-center justify-content-center"><span class="icon-globe"></span></div>
-              <h3 class="mb-4">Download Resume</h3>
-              <p><a href="https://drive.google.com/file/d/1yheUkqW3Z8hKs0Vr4j178-_tCr6EGf-Y/view?usp=drive_link" class="btn btn-primary" target="_blank">Download Resume</a></p>
-            </div>
-          </div>
-
-          <div class="container">
-            <br /><br />
-            <div class="row justify-content-center">
-              <div class="col-md-7 ftco-animate text-center">
-                <h2>Have a<span> Question?  </span> <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-              </div>
-            </div>
-            <br />
-            <ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-              <li class="ftco-animate normal-txt">Find me on  </li>
-              <li class="ftco-animate"><a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/"><span class="icon-linkedin"></span></a></li>
-            </ul>
-            <br />
-          </div>
-
-        </div>
+    <!-- CONTACT -->
+    <section id="contact-section">
+      <h3 class="section-title">Contact</h3>
+      <div class="glass">
+        <p>Email: <a href="mailto:chandan.cloudopsgmail.com">chandan.cloudopsgmail.com</a> • Phone: +91-7204181903</p>
       </div>
     </section>
 
-    <footer class="ftco-footer ftco-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-          </div>
-        </div>
-      </div>
+    <footer style="padding:36px 6vw;color:#cfeff0;text-align:center">
+      © <span id="yr"></span> Chandan Kumar — DevOps & Cloud Engineer
     </footer>
+  </div>
 
-    <!-- loader (kept) -->
-    <div id="ftco-loader" class="show fullscreen">
-      <svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg>
-    </div>
+  <script>
+  // set year
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-    <!-- Original scripts (kept) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
+  /*************************************************
+   * THREE.JS BACKGROUND: multiple floating icons,
+   * orbiting ring, glow, particles & spark trails
+   *************************************************/
+  (function(){
+    // container where we append renderer
+    const container = document.getElementById('three-container') || document.body;
+    // scene + camera + renderer
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x000010, 0.02);
 
-    <!-- Custom enhancement scripts -->
-    <script>
-      /* =====================
-         Particles (lightweight custom)
-         ===================== */
-      (function(){
-        const canvas = document.getElementById('particlesCanvas');
-        const ctx = canvas.getContext('2d');
-        let w = canvas.width = innerWidth;
-        let h = canvas.height = innerHeight;
-        const particles = [];
-        const count = Math.max(Math.floor((w+h)/160), 30);
+    const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.1, 200);
+    camera.position.set(0, 0, 28);
 
-        function rand(min,max){return Math.random()*(max-min)+min}
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.domElement.style.position = 'fixed';
+    renderer.domElement.style.left = 0;
+    renderer.domElement.style.top = 0;
+    renderer.domElement.style.zIndex = 0;
+    renderer.domElement.id = 'three-bg';
+    container.appendChild(renderer.domElement);
 
-        for(let i=0;i<count;i++){
-          particles.push({
-            x: rand(0,w),
-            y: rand(0,h),
-            r: rand(0.6,2.6),
-            vx: rand(-0.2,0.6),
-            vy: rand(-0.2,0.6),
-            a: rand(0.06,0.28)
-          });
+    // Lights
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
+    const point = new THREE.PointLight(0x66ffea, 1.2, 200, 2);
+    point.position.set(0, 10, 30);
+    scene.add(point);
+
+    // Load textures for icons
+    const loader = new THREE.TextureLoader();
+    // icon files (make sure these exist in /images/)
+    const iconPaths = [
+      'images/aws.png',
+      'images/azure.png',
+      'images/gcp.png',
+      'images/kubernetes.png',
+      'images/jenkins.png'
+    ];
+
+    // MAIN LOGO (center) - glowing devops logo. Add your own 'devops-logo.png' in images/
+    const devopsTex = loader.load('images/devops-logo.png', undefined, undefined, ()=>{/*fail silently*/});
+    const centerMat = new THREE.MeshBasicMaterial({ map: devopsTex, transparent:true, opacity:0.95 });
+    const centerGeo = new THREE.PlaneGeometry(10, 5.5);
+    const centerMesh = new THREE.Mesh(centerGeo, centerMat);
+    centerMesh.position.set(0, 0, -12);
+    scene.add(centerMesh);
+
+    // Soft glow behind logo
+    const glowMat = new THREE.MeshBasicMaterial({ color: 0x66ffea, transparent:true, opacity:0.12 });
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(12.5, 6.5), glowMat);
+    glow.position.set(0,0,-12.5);
+    scene.add(glow);
+
+    // Floating icons at different Z depths
+    const floating = [];
+    for(let i=0;i<iconPaths.length;i++){
+      const tex = loader.load(iconPaths[i]);
+      const mat = new THREE.MeshStandardMaterial({ map:tex, transparent:true, roughness:0.8, metalness:0.0 });
+      const geo = new THREE.PlaneGeometry(2.2,2.2);
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set((Math.random()*22)-11, (Math.random()*12)-6, (Math.random()*20)-18);
+      m.userData.vy = 0.002 + Math.random()*0.01;
+      m.userData.vx = 0.001 + Math.random()*0.004;
+      scene.add(m);
+      floating.push(m);
+    }
+
+    // Orbiting ring of icons (3D DevOps ring)
+    const orbiters = [];
+    const ringCount = 8;
+    for(let i=0;i<ringCount;i++){
+      const path = iconPaths[i % iconPaths.length];
+      const tex = loader.load(path);
+      const mat = new THREE.MeshBasicMaterial({ map: tex, transparent:true });
+      const geo = new THREE.PlaneGeometry(1.8,1.8);
+      const orb = new THREE.Mesh(geo, mat);
+      // distribute angles
+      const angle = (i / ringCount) * Math.PI * 2;
+      orb.userData.angle = angle;
+      orb.userData.radius = 9 + (i%2) * 1.6; // slightly different radii for depth
+      orb.userData.speed = 0.003 + (i*0.0006);
+      orb.position.set(Math.cos(angle) * orb.userData.radius, Math.sin(angle) * (orb.userData.radius*0.35), -4 - (i%3));
+      scene.add(orb);
+      orbiters.push(orb);
+    }
+
+    // particle sparks: small points moving along trails
+    const particlesCount = 220;
+    const positions = new Float32Array(particlesCount * 3);
+    const speeds = new Float32Array(particlesCount);
+    for(let i=0;i<particlesCount;i++){
+      positions[i*3] = (Math.random()*160)-80;
+      positions[i*3+1] = (Math.random()*80)-40;
+      positions[i*3+2] = (Math.random()*160)-120;
+      speeds[i] = 0.1 + Math.random() * 0.6;
+    }
+    const pgeo = new THREE.BufferGeometry();
+    pgeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const pmaterial = new THREE.PointsMaterial({ color: 0x66ffea, size: 0.06, transparent:true, opacity:0.9 });
+    const points = new THREE.Points(pgeo, pmaterial);
+    scene.add(points);
+
+    // subtle vignette plane for depth (very transparent)
+    const vignetteMat = new THREE.MeshBasicMaterial({ color:0x000010, transparent:true, opacity:0.18 });
+    const vignette = new THREE.Mesh(new THREE.PlaneGeometry(120, 80), vignetteMat);
+    vignette.position.set(0,0,-60);
+    scene.add(vignette);
+
+    // animation loop
+    let t = 0;
+    function animate(){
+      requestAnimationFrame(animate);
+      t += 0.01;
+
+      // rotate main logo slowly
+      centerMesh.rotation.y += 0.002;
+      glow.rotation.y += 0.0025;
+
+      // floating icons bob and rotate
+      floating.forEach((m, idx) => {
+        m.position.y += Math.sin(t + idx) * m.userData.vy * 0.6;
+        m.position.x += Math.cos(t + idx) * m.userData.vx * 0.4;
+        m.rotation.z += 0.0012 + (idx*0.0003);
+      });
+
+      // orbiters revolve around center
+      orbiters.forEach((o, i) => {
+        o.userData.angle += o.userData.speed;
+        const rad = o.userData.radius;
+        o.position.x = Math.cos(o.userData.angle) * rad;
+        o.position.y = Math.sin(o.userData.angle) * (rad * 0.35);
+        o.rotation.y += 0.02 + (i*0.002);
+      });
+
+      // particles flow towards the camera a bit
+      const pos = pgeo.attributes.position.array;
+      for(let i=0;i<particlesCount;i++){
+        pos[i*3+2] += speeds[i]*0.6;
+        if(pos[i*3+2] > 40){
+          pos[i*3] = (Math.random()*160)-80;
+          pos[i*3+1] = (Math.random()*80)-40;
+          pos[i*3+2] = -160;
         }
+      }
+      pgeo.attributes.position.needsUpdate = true;
 
-        addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+      // camera subtle movement on mouse (parallax effect)
+      camera.position.x += (mouseX - camera.position.x) * 0.03;
+      camera.position.y += ( -mouseY - camera.position.y) * 0.03;
+      camera.lookAt(0,0,0);
 
-        function step(){
-          ctx.clearRect(0,0,w,h);
-          for(const p of particles){
-            p.x += p.vx; p.y += p.vy;
-            if(p.x < 0) p.x = w;
-            if(p.x > w) p.x = 0;
-            if(p.y < 0) p.y = h;
-            if(p.y > h) p.y = 0;
-            ctx.beginPath();
-            ctx.fillStyle = 'rgba(102,255,234,'+p.a+')';
-            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctx.fill();
-          }
-          requestAnimationFrame(step);
-        }
-        step();
-      })();
+      renderer.render(scene, camera);
+    }
+    animate();
 
-      /* =====================
-         Improved typing animation (robust)
-         ===================== */
-      (function(){
-        const el = document.getElementById('typing-animation');
-        const texts = ['DevOps Engineer','Blogger','Freelancer','Cloud Engineer'];
-        let idx = 0, pos = 0, forward = true;
-        function tick(){
-          const current = texts[idx];
-          if(forward){
-            el.textContent = current.slice(0, ++pos);
-            if(pos === current.length){ forward=false; setTimeout(tick,1200); return; }
-          } else {
-            el.textContent = current.slice(0, --pos);
-            if(pos === 0){ forward=true; idx=(idx+1)%texts.length; }
-          }
-          setTimeout(tick, forward?120:40);
-        }
-        tick();
-      })();
+    // resize handling
+    window.addEventListener('resize', ()=>{
+      renderer.setSize(innerWidth, innerHeight);
+      camera.aspect = innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+    });
 
-      /* =====================
-         Cube click pulse + mouse parallax in hero
-         ===================== */
-      (function(){
-        const cube = document.getElementById('mainCube');
-        let isPulsing=false;
-        cube.addEventListener('click', ()=>{
-          if(isPulsing) return;
-          isPulsing = true;
-          cube.style.transition = 'transform 420ms cubic-bezier(.2,.9,.3,1)';
-          cube.style.transform += ' scale(1.06)';
-          setTimeout(()=>{ cube.style.transform = cube.style.transform.replace(' scale(1.06)',''); isPulsing=false; },420);
-        });
+    // parallax mouse
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e=>{
+      mouseX = (e.clientX - innerWidth/2) * 0.02;
+      mouseY = (e.clientY - innerHeight/2) * 0.02;
+    });
 
-        // parallax follow mouse
-        document.addEventListener('mousemove', (e)=>{
-          const cx = innerWidth/2, cy = innerHeight/2;
-          const dx = (e.clientX - cx)/cx, dy = (e.clientY - cy)/cy;
-          const rotX = dy*8, rotY = dx*12;
-          // only rotate cube if exists
-          if(cube) cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        });
+  })();
 
-        // mobile touch - subtle
-        let touchTimeout = null;
-        document.addEventListener('touchstart', ()=> {
-          cube.style.transition='transform 600ms cubic-bezier(.2,.9,.3,1)';
-          clearTimeout(touchTimeout);
-          touchTimeout = setTimeout(()=>{ cube.style.transition='transform 900ms cubic-bezier(.2,.9,.3,1)'; },700);
-        });
-      })();
+  /****************************************************************
+   * GSAP Scroll-triggered reveals and micro-interactions
+   ****************************************************************/
+  (function(){
+    gsap.registerPlugin(ScrollTrigger);
 
-      /* =====================
-         Counters animation (waypoints fallback)
-         ===================== */
-      (function(){
-        const counters = document.querySelectorAll('.counter');
-        const animateCounter = el => {
-          const target = +el.getAttribute('data-number') || 0;
-          let cur = 0;
-          const step = Math.max(1, Math.floor(target / 80));
-          const tick = () => {
-            cur += step;
-            if(cur >= target){ el.textContent = target; }
-            else { el.textContent = cur; requestAnimationFrame(tick); }
-          };
-          tick();
-        };
+    // Fade-in for sections
+    document.querySelectorAll('section').forEach(section=>{
+      gsap.from(section, {
+        opacity:0, y:40, duration:0.9, ease:"power3.out",
+        scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none none" }
+      });
+    });
 
-        // IntersectionObserver to trigger once
-        const obs = new IntersectionObserver(entries=>{
-          entries.forEach(entry=>{
-            if(entry.isIntersecting){
-              animateCounter(entry.target);
-              obs.unobserve(entry.target);
-            }
-          });
-        }, {threshold: 0.4});
-        counters.forEach(c => obs.observe(c));
-      })();
+    // Tech icons stagger reveal when .techs is visible
+    gsap.from('.tech', {
+      scrollTrigger: { trigger: '#tech-section', start: "top 70%" },
+      opacity: 0, y: 30, stagger: 0.12, duration: 0.8, ease: "power2.out"
+    });
 
-      /* =====================
-         Small on-scroll reveal for ftco-animate elements
-         ===================== */
-      (function(){
-        const els = document.querySelectorAll('.ftco-animate');
-        const obs = new IntersectionObserver(entries=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }
-          });
-        },{threshold:0.12});
-        els.forEach(el => obs.observe(el));
-      })();
+    // animate the cube inside hero (small local hover)
+    const insideCube = document.getElementById('insideCube');
+    if(insideCube){
+      insideCube.addEventListener('mouseenter', ()=> gsap.to(insideCube, { rotation: 0.3, duration: 0.6 }));
+      insideCube.addEventListener('mouseleave', ()=> gsap.to(insideCube, { rotation: 0, duration: 0.8 }));
+    }
+  })();
 
-      /* =====================
-         Optional: if you want 3D background with Three.js uncomment
-         (kept commented to not request WebGL on low devices)
-         ===================== */
-      (function(){
-        try {
-          const canvas = document.createElement('canvas');
-          // minimal three.js scene for subtle floating geometry
-          // We'll use WebGL only when available & not on mobile-low
-          const useThree = true;
-          if(useThree && !/Mobi|Android/i.test(navigator.userAgent)){
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.1, 1000);
-            camera.position.z = 40;
-            const renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
-            renderer.setSize(innerWidth, innerHeight);
-            renderer.domElement.style.position = 'fixed';
-            renderer.domElement.style.left = 0;
-            renderer.domElement.style.top = 0;
-            renderer.domElement.style.zIndex = 0;
-            renderer.domElement.id = 'three-bg';
-            document.body.appendChild(renderer.domElement);
+  /****************************************************************
+   * Accessibility & friendly fallbacks
+   ****************************************************************/
+  (function(){
+    // reduce motion preference handling: if user prefers reduced motion, stop heavy animations
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      document.querySelectorAll('canvas, #three-bg').forEach(el => el.style.display = 'none');
+    }
+  })();
 
-            // torus knot (wire)
-            const geom = new THREE.TorusKnotGeometry(10, 3, 150, 20);
-            const mat = new THREE.MeshBasicMaterial({ color: 0xffbe3d, wireframe: true, opacity: 0.15, transparent: true });
-            const tk = new THREE.Mesh(geom, mat);
-            scene.add(tk);
+  /****************************************************************
+   * Tiny typing effect for hero subtitle
+   ****************************************************************/
+  (function(){
+    const el = document.getElementById('typing');
+    const texts = ['DevOps Engineer', 'Cloud & Kubernetes', 'Infrastructure as Code', 'CI/CD & Automation'];
+    let i=0, j=0, forward=true;
+    function tick(){
+      const cur = texts[i];
+      el.textContent = cur.slice(0, j);
+      if(forward){ j++; if(j>cur.length){ forward=false; setTimeout(tick,900); return; } }
+      else { j--; if(j<0){ forward=true; i=(i+1)%texts.length; j=0; } }
+      setTimeout(tick, forward?80:28);
+    }
+    tick();
+  })();
 
-            // lights
-            const p = new THREE.PointLight(0x66ffea, 1.0);
-            p.position.set(30,30,50);
-            scene.add(p);
-
-            const animate = () => {
-              requestAnimationFrame(animate);
-              tk.rotation.x += 0.002;
-              tk.rotation.y += 0.003;
-              renderer.render(scene, camera);
-            };
-            animate();
-
-            window.addEventListener('resize', ()=> {
-              renderer.setSize(window.innerWidth, window.innerHeight);
-              camera.aspect = window.innerWidth / window.innerHeight;
-              camera.updateProjectionMatrix();
-            });
-          }
-        } catch(e){ /* fail silently on devices without WebGL */ }
-      })();
-
-    </script>
-
-    <!-- Keep original main.js (if you rely on it); it will run after enhancements -->
-    <script src="js/main.js"></script>
-  </body>
+  </script>
+</body>
 </html>
