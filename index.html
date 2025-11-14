@@ -1,662 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Chandan Kumar Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chandan Kumar Portfolio — 3D Edition</title>
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/aos.css">
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+      background: #0d0d0d;
+      color: #fff;
+    }
 
+    /* ============================= */
+    /* 3D BACKGROUND CANVAS */
+    /* ============================= */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
 
+    /* ============================= */
+    /* NAVBAR */
+    /* ============================= */
+    nav {
+      width: 100%;
+      padding: 20px 50px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-<style>
+    nav a.logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffbe3d;
+      text-decoration: none;
+    }
 
-/*======================================
-//--//-->   ABOUT
-======================================*/
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
 
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+    nav ul li a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
+    nav ul li a:hover {
+      color: #ffbe3d;
+    }
 
-.about-mf .about-img img {
-  margin-left: 10px;
-}
+    /* ============================= */
+    /* HERO SECTION */
+    /* ============================= */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-left: 8%;
+    }
 
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      line-height: 80px;
+      margin: 0;
+    }
 
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
+    .hero h1 span {
+      color: #ffbe3d;
+    }
 
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
+    #typing-text {
+      font-size: 28px;
+      margin-top: 10px;
+      color: #bbb;
+      height: 34px;
+    }
 
+    .hero-buttons {
+      margin-top: 40px;
+    }
 
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
+    .hero-buttons a {
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-right: 15px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+    .btn-primary {
+      background: #ffbe3d;
+      color: #000;
+    }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
+    .btn-outline {
+      border: 2px solid #ffbe3d;
+      color: #ffbe3d;
+    }
 
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
+    .btn-outline:hover {
+      background: #ffbe3d;
+      color: #000;
+    }
 
+    /* Glow floating card */
+    .floating-card {
+      width: 320px;
+      height: 420px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      box-shadow: 0 0 25px rgba(255, 190, 61, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      animation: float 4s ease-in-out infinite;
+    }
 
-/* project image zoom effect */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
 
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
+    /* ABOUT SECTION */
+    section {
+      padding: 120px 10%;
+    }
 
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
+    h2.section-title {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #ffbe3d;
+    }
 
+    .about-box {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
 
-</style>
+    .about-box img {
+      width: 350px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
 
+    .skills {
+      margin-top: 25px;
+    }
 
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Chandan Kumar</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+    .skills .bar {
+      margin-bottom: 15px;
+    }
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-			  <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/about.jpg);">
-	          	 <div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Chandan Kumar</span></h1>
+    .skills .bar span {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #bbb;
+    }
 
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
+    .skills .bar .line {
+      width: 100%;
+      height: 8px;
+      background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-						<script>
+    .skills .bar .line div {
+      height: 8px;
+      background: #ffbe3d;
+    }
 
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
+    /* Project Grid */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
 
-						// Create an array of typing text
-						const typingTexts = [
-						'DevOps Engineer',
-						'Bloger',
-						'Freelancer ',
-						];
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      transition: 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 190, 61, 0.5);
+    }
 
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
 
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
+  </style>
+</head>
 
-						</script>
+<body>
 
-						<br>
-						<br>
-			            <h2>A Passionate DevOps & Cloud Engineer</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-			            <p><a href="https://hashnode.com/@chandan-cloudops" class="btn btn-primary py-3 px-4">Blogs</a> 
-							<a href="https://github.com/chandan-cloudops" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
-    </section>
+  <!-- 3D Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
 
-	<section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-		<div class="container">
-			<div class="row">
-				<!-- Left Side: Image and Profile Details -->
-				<div class="col-md-5 col-lg-4 d-flex align-items-stretch">
-					<div class="img-about img d-flex align-items-stretch">
-						<div class="overlay">
-							<div class="row">
-								<!-- Profile Image -->
-								<div class="col-md-12">
-									<div class="about-img">
-										<img src="images/aboutmediu.jpeg" class="img-fluid rounded b-shadow-a" alt="Profile Image">
-									</div>
-								</div>
-								
-								<!-- Skills Section -->
-								<div class="col-md-12 mt-4">
-									<div class="skill-mf">
-										<h4 class="title-s">Technical Skills</h4>
-										
-										<!-- Skill: Configuration Management -->
-										<div class="progress-wrapper">
-											<p><span>Configuration Management</span> <span class="pull-right">70%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: AWS & GCP Cloud -->
-										<div class="progress-wrapper">
-											<p><span>AWS & GCP Cloud</span> <span class="pull-right">85%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: Infrastructure as Code (IaC) -->
-										<div class="progress-wrapper">
-											<p><span>Infrastructure as Code (IaC)</span> <span class="pull-right">85%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-info" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: CI/CD Tools -->
-										<div class="progress-wrapper">
-											<p><span>CI/CD Tools</span> <span class="pull-right">90%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-warning" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: Version Control Tools -->
-										<div class="progress-wrapper">
-											<p><span>Version Control Tools</span> <span class="pull-right">85%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-danger" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: Monitoring Tools -->
-										<div class="progress-wrapper">
-											<p><span>Monitoring Tools</span> <span class="pull-right">80%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-secondary" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-										
-										<!-- Skill: Containerization & Orchestration Tools -->
-										<div class="progress-wrapper">
-											<p><span>Containerization & Orchestration Tools</span> <span class="pull-right">80%</span></p>
-											<div class="progress">
-												<div class="progress-bar bg-white" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Skills Section Ends -->
-							</div>
-						</div>
-					</div>
-				</div>
-	
-				<!-- Right Side: About Me Section -->
-				<div class="col-md-7 col-lg-8 pl-lg-5 pb-5">
-					<div class="row justify-content-start pb-3">
-						<div class="col-md-12 heading-section ftco-animate">
-							<h1 class="big">About</h1>
-							<h2 class="mb-4">About Me</h2>
-							<p>👋 Hi, I’m <strong>Chandan Kumar</strong>, a dedicated DevOps Engineer with over 3 years of hands-on experience in building and managing cloud-native solutions. I thrive in optimizing development and operations to create scalable, efficient, and robust systems.</p>
-							
-							<p><strong>💼 AWS Cloud Expertise:</strong> Proven expertise in architecting and optimizing cloud infrastructures using Amazon Web Services (AWS), ensuring robust security and cost efficiency.</p>
-							<p><strong>🐧 Linux Enthusiast:</strong> Adept at configuring and fine-tuning Linux servers to ensure top performance and security.</p>
-							<p><strong>🌐 Version Control Specialist:</strong> Strong command of Git version control, implementing workflows to boost collaboration and code quality.</p>
-							<p><strong>🚀 CI/CD Specialist:</strong> Designed and deployed end-to-end Continuous Integration/Continuous Deployment pipelines using Jenkins, GitHub Actions, and GitLab for automated software delivery.</p>
-							<p><strong>🐳 Containerization & Orchestration:</strong> Skilled in Docker and Kubernetes, managing containerized applications to maintain high availability and scalability.</p>
-							<p><strong>🛠️ IaC Advocate:</strong> Expert in automating infrastructure using Terraform and Ansible, turning infrastructure into version-controlled code.</p>
-							<p><strong>📈 Lifelong Learner:</strong> Constantly exploring new technologies and DevOps practices to stay on top of industry trends.</p>
-							<p><strong>🤝 Team Player:</strong> Excellent at collaborating with cross-functional teams to achieve seamless software delivery, minimize downtime, and enhance system reliability.</p>
-	
-							<!-- Additional Info Section -->
-							<div class="counter-wrap ftco-animate d-flex mt-md-3">
-								<div class="text">
-									<p class="mb-4">
-										<span class="number" data-number="10">10</span> <span>+</span>
-										<span>&nbsp; Projects Completed</span>
-									</p>
-									<p><a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-primary py-3 px-3">Visit My LinkedIn</a></p>
-								</div>
-							</div>
-							<!-- Additional Info Section Ends -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="logo">Chandan Kumar</a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p> Driven and detail-oriented DevOps Engineer with 3+ years of experience. Proficient in AWS, GCP, Kubernetes, Jenkins, Git, Docker, Prometheus, Grafana, Ansible, and Terraform. Experienced in designing and managing CI/CD pipelines, container orchestration, cloud infrastructure, and automation processes. Adept at streamlining deployment workflows, optimizing system performance, and ensuring high availability. Passionate about leveraging technical expertise and collaborative skills to deliver reliable, scalable, and efficient solutions.</p>
-          </div>
-        </div>
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div>
+      <h1>Hello, I'm <span>Chandan Kumar</span></h1>
+      <div id="typing-text"></div>
+      <div class="hero-buttons">
+        <a href="https://hashnode.com/@chandan-cloudops" class="btn-primary">Blogs</a>
+        <a href="https://github.com/chandan-cloudops" class="btn-outline">My Works</a>
+      </div>
+    </div>
 
-		<div class="row">
-			<h1 class="big-4">Experience</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-		<div class="row">
-			<div class="col-md-6">
-				<div class="resume-wrap ftco-animate">
-					<span class="date">January 2023 - November 2024</span>
-					<h2>Liane Care</h2>
-					<span class="position">Freelance Consultant DevOps</span>
-					<p class="mt-4">
-						<ul>
-							<li>Designed and managed CI/CD pipelines for application deployments using Jenkins, ArgoCD, and GitHub Actions.</li>
-							<li>Set up monitoring and alerting solutions with Prometheus and Grafana for Kubernetes clusters and cloud resources to ensure high availability.</li>
-							<li>Automated cloud infrastructure using Terraform and Ansible, reducing provisioning time and human error.</li>
-							<li>Configured GCP environments, including GKE clusters, Google Cloud Storage, and IAM roles to support application development and deployment.</li>
-							<li>Implemented disaster recovery (DR) and high availability (HA) strategies for applications running on GKE.</li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		
-			<div class="col-md-6">
-				<div class="resume-wrap ftco-animate">
-					<span class="date">December 2022 - August 2023</span>
-					<h2>SupplyOp Software</h2>
-					<span class="position">Freelance Consultant DevOps</span>
-					<p class="mt-4">
-						<ul>
-							<li>Designed and implemented a comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes, and Terraform to support a microservices-based application.</li>
-							<li>Automated cloud resource provisioning with Terraform and Ansible, improving scalability and reducing infrastructure costs.</li>
-							<li>Set up monitoring and alerting using Prometheus and Grafana to ensure high availability of applications across multiple environments.</li>
-							<li>Collaborated with development teams to containerize and deploy applications using Docker and Kubernetes, improving the deployment cycle.</li>
-							<li>Managed deployments across different stages, including QA, UAT, and Production environments.</li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<br>
-		<br>
-		
-		<div class="row">
-			<div class="col-md-6">
-				<div class="resume-wrap ftco-animate">
-					<span class="date">May 2022 - November 2022</span>
-					<h2>Oodles Technologies</h2>
-					<span class="position">Sr. Associate Consultant DevOps</span>
-					<p class="mt-4">
-						<ul>
-							<li>Managed end-to-end DevOps processes, including source code management, CI/CD, and containerization using Git, Jenkins, and Docker.</li>
-							<li>Developed and deployed microservices architecture on Kubernetes, ensuring efficient resource utilization and scalability.</li>
-							<li>Set up and maintained Jenkins jobs, automating build and deployment processes, and configured Docker images and Kubernetes manifests.</li>
-							<li>Implemented infrastructure as code (IaC) using Terraform to automate AWS resource provisioning, such as EC2, S3, and RDS.</li>
-							<li>Integrated SonarQube for static code analysis and automated quality checks in the CI/CD pipeline.</li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		
-			<div class="col-md-6">
-				<div class="resume-wrap ftco-animate">
-					<span class="date">October 2019 - January 2022</span>
-					<h2>Ekstasis Technologies Pvt Ltd</h2>
-					<span class="position">DevOps Engineer</span>
-					<p class="mt-4">
-						<ul>
-							<li>Configured and managed cloud infrastructure using AWS services such as EC2, S3, RDS, VPC, and IAM, ensuring secure and efficient deployments.</li>
-							<li>Automated routine tasks using Shell scripts, reducing manual effort and improving operational efficiency.</li>
-							<li>Monitored server performance using CloudWatch, Prometheus, and Grafana, and implemented alerts to ensure uptime and reliability.</li>
-							<li>Collaborated with development teams to containerize applications using Docker, improving deployment consistency and speed.</li>
-							<li>Orchestrated container deployments with Kubernetes, utilizing Helm charts for easy and repeatable deployments.</li>
-						</ul>
-					</p>
-				</div>
-			</div>
-		</div>
-		
+    <div class="floating-card"></div>
+  </section>
 
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-			<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2013-2017</span>
-    					<h2>Bachelor of Engineering</h2>
-    					<span class="position">SJB Institute of Technology, Bengaluru</span>
-    					<!-- <p class="mt-4">Grade: First class distinction.</p> -->
-    				</div>
-    			</div>
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-box">
+      <img src="images/aboutmediu.jpeg" />
+      <div>
+        <p>I am Chandan Kumar, a DevOps & Cloud Engineer with 3+ years of experience...</p>
 
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2011-2013</span>
-    					<h2>Higher Secondary School</h2>
-    					<span class="position">Mahabodhi College, Gaya</span>
-    				</div>
-				</div>
-    		</div>
-
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-
-   
-
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample DevOps & Data-Science projects on Complete Deployment .</p>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="block-20 zoom-effect" style="background-image: url('images/proj_1.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster">Setting Up an Air-Gapped Kubernetes Cluster</a></h3>
-                <p> This comprehensive guide walks you through the setup of an air-gapped Kubernetes cluster. We’ll begin by provisioning the necessary infrastructure using Terraform, followed by configuring Kubernetes in an isolated environment.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="block-20 zoom-effect" style="background-image: url('images/proj_2.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2">Deploying an Azure AKS Cluster on a Custom Virtual Network Using Terraform with NGINX Ingress, External DNS, and SSL using Let’s Encrypt</a></h3>
-                <p> I will guide you through creating an Azure Kubernetes Service (AKS) cluster using Terraform, integrated with a custom Virtual Network (VNet). Additionally, we will install and configure key services such as NGINX Ingress Controller, External DNS, and SSL via Let’s Encrypt. The main goal is to deploy a Facebook clone application on Azure AKS, securely accessible over HTTPS with DNS management automated through External DNS.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="block-20 zoom-effect" style="background-image: url('images/proj_3.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03">Azure Private AKS with Bastion Host and Azure Container Registry </a></h3>
-                <p>Deploying a private Azure Kubernetes Service (AKS) with enhanced security and controlled access is a best practice for organizations handling sensitive workloads. By integrating a Bastion Host and using Azure Container Registry (ACR), you can create a secure and scalable architecture for your containerized applications. </p>
-              </div>
-            </div>
-          </div>
-        </div>
-	<br>
-			  </div>
-			</div>
-		 </div>
-	  </div>
-    </section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="10">0</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="10">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="50">0</strong>
-                <span>Mentored Students</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="20">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
+        <div class="skills">
+          <div class="bar"><span>AWS & GCP</span><div class="line"><div style="width: 85%"></div></div></div>
+          <div class="bar"><span>Kubernetes</span><div class="line"><div style="width: 80%"></div></div></div>
+          <div class="bar"><span>Terraform & Ansible</span><div class="line"><div style="width: 90%"></div></div></div>
+          <div class="bar"><span>Docker</span><div class="line"><div style="width: 85%"></div></div></div>
         </div>
       </div>
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to solve business problems &amp; uncover hidden Automation stories </h4>
-						<br>
-						<p><a href="https://github.com/chandan-cloudops"class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
+    </div>
+  </section>
 
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
-          </div>
-        </div>
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
 
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>Bihar, India</p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span>
-          		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://0101010101">+91-7204181903</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:info@yoursite.com">chandan.cloudopsgmail.com</a></p>
-	          </div>
-          </div>
-		  <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-			<div class="align-self-stretch box p-4 text-center">
-			  <div class="icon d-flex align-items-center justify-content-center">
-				<span class="icon-globe"></span>
-			  </div>
-			  <h3 class="mb-4">Download Resume</h3>
-			  <p>
-				<a href="https://drive.google.com/file/d/1yheUkqW3Z8hKs0Vr4j178-_tCr6EGf-Y/view?usp=drive_link" 
-				   class="btn btn-primary" 
-				   target="_blank">Download Resume</a>
-			  </p>
-			</div>
-		  </div>
+    <div class="projects">
+      <div class="project-card">
+        <img src="images/proj_1.png" />
+        <h3>Air-Gapped Kubernetes Cluster</h3>
+        <p>A full step-by-step guide...</p>
+      </div>
+    </div>
+  </section>
 
-		  <div class="container">
-			<br>
-			<br>
-			<div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-				</div>
-			</div>
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/"><span class="icon-linkedin"></span></a></li>  
-					</ul>
-				<br>
-		   </div>
-   </div>
- </section>
+  <script>
+    /* ===================================== */
+    /* 3D Background Scene */
+    /* ===================================== */
+    const canvas = document.getElementById("bg-canvas");
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
+    const geometry = new THREE.TorusKnotGeometry(10, 3, 150, 20);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffbe3d, wireframe: true });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    torusKnot.position.z = -50;
+    scene.add(torusKnot);
 
- 
-	
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row">
-			<div class="col-md-12 text-center">
-  
-			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(20, 20, 20);
+    scene.add(light);
 
+    function animate() {
+      requestAnimationFrame(animate);
+      torusKnot.rotation.x += 0.004;
+      torusKnot.rotation.y += 0.006;
+      renderer.render(scene, camera);
+    }
+    animate();
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    /* ===================================== */
+    /* Typing Effect */
+    /* ===================================== */
+    const typingElement = document.getElementById("typing-text");
+    const roles = ["DevOps Engineer", "Cloud Engineer", "Freelancer", "Blogger"]; 
+    let i = 0, j = 0, deleting = false;
 
+    function typeEffect() {
+      const current = roles[i];
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+      if (!deleting) {
+        typingElement.textContent = current.substring(0, j++);
+        if (j > current.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1200);
+          return;
+        }
+      } else {
+        typingElement.textContent = current.substring(0, j--);
+        if (j === 0) {
+          deleting = false;
+          i = (i + 1) % roles.length;
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 50 : 120);
+    }
+
+    typeEffect();
+
+  </script>
+
+</body>
 </html>
-
