@@ -5,20 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Fonts & Core Styles -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" />
-    <link rel="stylesheet" href="css/aos.css" />
-    <link rel="stylesheet" href="css/ionicons.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- Enhanced 3D Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Bootstrap for stability -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       /* =====================
@@ -37,7 +28,6 @@
         --text-muted: #64748b;
         --glass: rgba(255,255,255,0.05);
         --glass-dark: rgba(0,0,0,0.3);
-        --border-glow: rgba(59, 130, 246, 0.4);
       }
 
       * {
@@ -62,7 +52,7 @@
          TYPOGRAPHY & LAYOUT
          ===================== */
       .section {
-        padding: 100px 0;
+        padding: 80px 0;
         position: relative;
       }
 
@@ -74,12 +64,12 @@
 
       .section-title {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
       }
 
       .section-title .subtitle {
         color: var(--neon-cyan);
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -88,29 +78,29 @@
       }
 
       .section-title h2 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: 800;
         background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
       }
 
       .section-title .title-description {
         color: var(--text-secondary);
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         max-width: 600px;
         margin: 0 auto;
       }
 
       /* =====================
-         NAVIGATION - GLASS MORPHISM
+         NAVIGATION
          ===================== */
       .navbar {
         position: fixed;
         top: 0;
         width: 100%;
-        background: rgba(10, 15, 28, 0.8);
+        background: rgba(10, 15, 28, 0.95);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(255,255,255,0.1);
         z-index: 1000;
@@ -119,21 +109,12 @@
       }
 
       .navbar.scrolled {
-        background: rgba(10, 15, 28, 0.95);
+        background: rgba(10, 15, 28, 0.98);
         padding: 0.8rem 0;
       }
 
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
       .nav-brand {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 800;
         background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
         -webkit-background-clip: text;
@@ -141,41 +122,19 @@
         text-decoration: none;
       }
 
-      .nav-menu {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-      }
-
       .nav-link {
-        color: var(--text-secondary);
-        text-decoration: none;
+        color: var(--text-secondary) !important;
         font-weight: 500;
         transition: all 0.3s ease;
-        position: relative;
+        margin: 0 10px;
       }
 
       .nav-link:hover {
-        color: var(--neon-cyan);
-      }
-
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--neon-cyan);
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
+        color: var(--neon-cyan) !important;
       }
 
       /* =====================
-         HERO SECTION - ENHANCED
+         HERO SECTION
          ===================== */
       .hero {
         min-height: 100vh;
@@ -183,6 +142,7 @@
         align-items: center;
         position: relative;
         overflow: hidden;
+        padding-top: 80px;
       }
 
       .hero-content {
@@ -204,7 +164,7 @@
       }
 
       .hero-title {
-        font-size: 4rem;
+        font-size: 3rem;
         font-weight: 800;
         margin-bottom: 20px;
         line-height: 1.1;
@@ -217,7 +177,7 @@
       }
 
       .hero-description {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         color: var(--text-secondary);
         margin-bottom: 40px;
         max-width: 600px;
@@ -226,10 +186,10 @@
       }
 
       .typing-container {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 30px;
-        min-height: 60px;
+        min-height: 50px;
       }
 
       #typing-text {
@@ -238,14 +198,7 @@
         -webkit-text-fill-color: transparent;
       }
 
-      .hero-buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-bottom: 60px;
-      }
-
-      .btn {
+      .btn-custom {
         padding: 12px 32px;
         border-radius: 12px;
         font-weight: 600;
@@ -254,45 +207,50 @@
         border: none;
         cursor: pointer;
         font-size: 1rem;
+        margin: 5px;
       }
 
-      .btn-primary {
+      .btn-primary-custom {
         background: linear-gradient(135deg, var(--accent), var(--neon-purple));
         color: white;
         box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
       }
 
-      .btn-primary:hover {
+      .btn-primary-custom:hover {
         transform: translateY(-2px);
         box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+        color: white;
       }
 
-      .btn-outline {
+      .btn-outline-custom {
         background: transparent;
         color: var(--text-primary);
-        border: 2px solid var(--glass);
+        border: 2px solid rgba(255,255,255,0.2);
         backdrop-filter: blur(10px);
       }
 
-      .btn-outline:hover {
+      .btn-outline-custom:hover {
         border-color: var(--neon-cyan);
         transform: translateY(-2px);
+        color: var(--text-primary);
       }
 
       /* =====================
-         3D TECH STACK SECTION
+         3D TECH STACK SECTION - FIXED
          ===================== */
       .tech-section {
-        background: rgba(0,0,0,0.3);
+        background: rgba(0,0,0,0.2);
         position: relative;
         overflow: hidden;
+        padding: 80px 0;
       }
 
       .tech-carousel-container {
         position: relative;
-        height: 400px;
-        perspective: 1000px;
-        margin: 60px auto;
+        height: 300px;
+        perspective: 1200px;
+        margin: 40px auto;
+        width: 100%;
       }
 
       .tech-carousel {
@@ -300,39 +258,46 @@
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
-        animation: rotate 40s infinite linear;
+        animation: rotate 30s infinite linear;
+        left: 0;
+        top: 0;
       }
 
       .tech-item {
         position: absolute;
-        width: 200px;
-        height: 200px;
+        width: 120px;
+        height: 120px;
         background: var(--glass);
         backdrop-filter: blur(10px);
-        border-radius: 20px;
+        border-radius: 15px;
         border: 1px solid rgba(255,255,255,0.1);
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
         box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        left: 50%;
+        top: 50%;
+        margin-left: -60px;
+        margin-top: -60px;
       }
 
       .tech-item:hover {
-        transform: scale(1.1);
+        transform: scale(1.1) !important;
         border-color: var(--neon-cyan);
         box-shadow: 0 12px 40px rgba(0, 245, 255, 0.2);
       }
 
       .tech-item img {
-        max-width: 80%;
-        max-height: 80%;
+        max-width: 60%;
+        max-height: 60%;
         filter: brightness(0) invert(1);
         transition: all 0.3s ease;
       }
 
       .tech-item:hover img {
         filter: brightness(1) invert(0);
+        transform: scale(1.1);
       }
 
       @keyframes rotate {
@@ -341,12 +306,13 @@
       }
 
       /* =====================
-         EXPERIENCE TIMELINE
+         EXPERIENCE TIMELINE - FIXED
          ===================== */
       .timeline {
         position: relative;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
+        padding: 40px 0;
       }
 
       .timeline::before {
@@ -362,8 +328,16 @@
 
       .timeline-item {
         position: relative;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         width: 45%;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .timeline-item:nth-child(odd) {
@@ -381,9 +355,10 @@
         background: var(--glass);
         backdrop-filter: blur(10px);
         border-radius: 15px;
-        padding: 30px;
+        padding: 25px;
         border: 1px solid rgba(255,255,255,0.1);
         transition: all 0.3s ease;
+        position: relative;
       }
 
       .timeline-content:hover {
@@ -395,12 +370,13 @@
       .timeline-date {
         color: var(--neon-cyan);
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         display: block;
+        font-size: 0.9rem;
       }
 
       .timeline-company {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         margin-bottom: 5px;
         color: var(--text-primary);
@@ -410,22 +386,43 @@
         color: var(--text-secondary);
         font-weight: 500;
         margin-bottom: 15px;
+        font-size: 1rem;
       }
 
       .timeline-dot {
         position: absolute;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         background: var(--neon-cyan);
         border-radius: 50%;
         top: 30px;
-        right: -10px;
+        right: -8px;
         box-shadow: 0 0 20px var(--neon-cyan);
+        z-index: 2;
       }
 
       .timeline-item:nth-child(even) .timeline-dot {
-        left: -10px;
+        left: -8px;
         right: auto;
+      }
+
+      .timeline-content ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .timeline-content li {
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+        position: relative;
+        padding-left: 15px;
+      }
+
+      .timeline-content li:before {
+        content: '▹';
+        color: var(--neon-cyan);
+        position: absolute;
+        left: 0;
       }
 
       /* =====================
@@ -433,28 +430,29 @@
          ===================== */
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-        margin-top: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
       }
 
       .project-card {
         background: var(--glass);
         backdrop-filter: blur(10px);
-        border-radius: 20px;
+        border-radius: 15px;
         overflow: hidden;
         border: 1px solid rgba(255,255,255,0.1);
         transition: all 0.3s ease;
+        height: 100%;
       }
 
       .project-card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-8px);
         border-color: var(--neon-cyan);
-        box-shadow: 0 20px 40px rgba(0, 245, 255, 0.15);
+        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
       }
 
       .project-image {
-        height: 200px;
+        height: 180px;
         background-size: cover;
         background-position: center;
         position: relative;
@@ -466,7 +464,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -479,11 +477,11 @@
       }
 
       .project-content {
-        padding: 25px;
+        padding: 20px;
       }
 
       .project-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         margin-bottom: 10px;
         color: var(--text-primary);
@@ -491,8 +489,9 @@
 
       .project-description {
         color: var(--text-secondary);
-        margin-bottom: 20px;
-        line-height: 1.6;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: 0.95rem;
       }
 
       /* =====================
@@ -500,16 +499,16 @@
          ===================== */
       .contact-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 50px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+        margin-top: 40px;
       }
 
       .contact-card {
         background: var(--glass);
         backdrop-filter: blur(10px);
         border-radius: 15px;
-        padding: 30px;
+        padding: 25px;
         text-align: center;
         border: 1px solid rgba(255,255,255,0.1);
         transition: all 0.3s ease;
@@ -521,20 +520,20 @@
       }
 
       .contact-icon {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         background: linear-gradient(135deg, var(--neon-cyan), var(--accent));
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 1.5rem;
+        margin: 0 auto 15px;
+        font-size: 1.2rem;
       }
 
       footer {
         background: rgba(0,0,0,0.5);
-        padding: 40px 0;
+        padding: 30px 0;
         text-align: center;
         border-top: 1px solid rgba(255,255,255,0.1);
       }
@@ -544,15 +543,11 @@
          ===================== */
       @media (max-width: 768px) {
         .hero-title {
-          font-size: 2.5rem;
+          font-size: 2.2rem;
         }
 
         .section-title h2 {
           font-size: 2rem;
-        }
-
-        .nav-menu {
-          display: none;
         }
 
         .timeline::before {
@@ -568,22 +563,40 @@
         }
 
         .timeline-dot {
-          left: 10px !important;
+          left: 12px !important;
           right: auto !important;
         }
 
-        .hero-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-
         .tech-carousel-container {
-          height: 300px;
+          height: 250px;
         }
 
         .tech-item {
-          width: 150px;
-          height: 150px;
+          width: 100px;
+          height: 100px;
+          margin-left: -50px;
+          margin-top: -50px;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 1.8rem;
+        }
+        
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .tech-item {
+          width: 80px;
+          height: 80px;
+          margin-left: -40px;
+          margin-top: -40px;
         }
       }
 
@@ -602,25 +615,36 @@
         -webkit-text-fill-color: transparent;
       }
 
-      .text-glow {
-        text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
     </style>
   </head>
 
   <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <a href="#" class="nav-brand">Chandan Kumar</a>
-        <ul class="nav-menu">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#tech" class="nav-link">Tech Stack</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+      <div class="container">
+        <a class="navbar-brand nav-brand" href="#">Chandan Kumar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tech">Tech Stack</a></li>
+            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -636,11 +660,12 @@
             I'm a <span id="typing-text"></span>
           </div>
           <p class="hero-description">
-            Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. Passionate about creating efficient, reliable systems.
+            Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. 
+            Passionate about creating efficient, reliable systems.
           </p>
           <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">View My Work</a>
-            <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
+            <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
           </div>
         </div>
       </div>
@@ -678,13 +703,13 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-date">October 2025 - Present</span>
-              <h3 class="timeline-company">Tech Innovations Inc.</h3>
+              <h3 class="timeline-company">CloudNative Solutions Inc.</h3>
               <div class="timeline-position">Senior DevOps Engineer</div>
               <ul>
-                <li>Lead cloud infrastructure migration to multi-region AWS architecture</li>
-                <li>Implemented GitOps workflows with ArgoCD and Kubernetes</li>
-                <li>Reduced deployment time by 60% through pipeline optimization</li>
-                <li>Mentored junior DevOps engineers and established best practices</li>
+                <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
+                <li>Implementing GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
+                <li>Optimizing CI/CD pipelines reducing deployment time by 60%</li>
+                <li>Mentoring team members and establishing DevOps best practices</li>
               </ul>
             </div>
           </div>
@@ -697,9 +722,10 @@
               <h3 class="timeline-company">Liane Care</h3>
               <div class="timeline-position">Freelance Consultant DevOps</div>
               <ul>
-                <li>Designed and managed CI/CD pipelines for application deployments</li>
-                <li>Set up monitoring and alerting solutions with Prometheus and Grafana</li>
+                <li>Designed and managed CI/CD pipelines using Jenkins, ArgoCD, and GitHub Actions</li>
+                <li>Implemented monitoring and alerting with Prometheus and Grafana for Kubernetes</li>
                 <li>Automated cloud infrastructure using Terraform and Ansible</li>
+                <li>Reduced provisioning time and human error through automation</li>
               </ul>
             </div>
           </div>
@@ -711,13 +737,40 @@
               <h3 class="timeline-company">SupplyOp Software</h3>
               <div class="timeline-position">Freelance Consultant DevOps</div>
               <ul>
-                <li>Implemented comprehensive DevOps pipeline using Jenkins and Kubernetes</li>
-                <li>Automated cloud resource provisioning with Terraform</li>
+                <li>Designed and implemented comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes</li>
+                <li>Automated cloud resource provisioning with Terraform and Ansible</li>
+                <li>Improved scalability and reduced infrastructure costs by 30%</li>
               </ul>
             </div>
           </div>
 
-          <!-- Add other experiences similarly -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">May 2022 - November 2022</span>
+              <h3 class="timeline-company">Oodles Technologies</h3>
+              <div class="timeline-position">Sr. Associate Consultant DevOps</div>
+              <ul>
+                <li>Managed end-to-end DevOps processes including source code management</li>
+                <li>Implemented CI/CD pipelines and containerization using Git, Jenkins, and Docker</li>
+                <li>Streamlined deployment processes across multiple environments</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">October 2019 - January 2022</span>
+              <h3 class="timeline-company">Ekstasis Technologies Pvt Ltd</h3>
+              <div class="timeline-position">DevOps Engineer</div>
+              <ul>
+                <li>Configured and managed cloud infrastructure using AWS services (EC2, S3, RDS, VPC, IAM)</li>
+                <li>Implemented monitoring solutions and automated routine tasks</li>
+                <li>Collaborated with development teams to improve deployment processes</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -735,7 +788,7 @@
           <div class="project-card">
             <div class="project-image" style="background-image: url('images/proj_1.png')">
               <div class="project-overlay">
-                <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary">View Project</a>
+                <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
             </div>
             <div class="project-content">
@@ -747,7 +800,7 @@
           <div class="project-card">
             <div class="project-image" style="background-image: url('images/proj_2.png')">
               <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary">View Project</a>
+                <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
             </div>
             <div class="project-content">
@@ -759,7 +812,7 @@
           <div class="project-card">
             <div class="project-image" style="background-image: url('images/proj_3.png')">
               <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary">View Project</a>
+                <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
             </div>
             <div class="project-content">
@@ -767,6 +820,10 @@
               <p class="project-description">Secure private AKS architecture using Bastion host and private ACR for secure deployments.</p>
             </div>
           </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <a href="https://github.com/chandan-cloudops" class="btn btn-primary-custom btn-custom">View More on GitHub</a>
         </div>
       </div>
     </section>
@@ -799,8 +856,17 @@
           <div class="contact-card">
             <div class="contact-icon">💼</div>
             <h3>Resume</h3>
-            <a href="https://drive.google.com/file/d/1yheUkqW3Z8hKs0Vr4j178-_tCr6EGf-Y/view" class="btn btn-primary" target="_blank">Download</a>
+            <a href="https://drive.google.com/file/d/1yheUkqW3Z8hKs0Vr4j178-_tCr6EGf-Y/view" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
           </div>
+        </div>
+
+        <div class="text-center mt-5">
+          <div class="mb-3">
+            <a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-outline-custom btn-custom me-2">LinkedIn</a>
+            <a href="https://github.com/chandan-cloudops" class="btn btn-outline-custom btn-custom me-2">GitHub</a>
+            <a href="https://hashnode.com/@chandan-cloudops" class="btn btn-outline-custom btn-custom">Blog</a>
+          </div>
+          <p class="text-muted">Have a question? <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="text-decoration-none">Click Here</a></p>
         </div>
       </div>
     </section>
@@ -809,15 +875,12 @@
     <footer>
       <div class="container">
         <p>&copy; 2024 Chandan Kumar. All rights reserved.</p>
-        <div style="margin-top: 20px;">
-          <a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" style="color: var(--text-secondary); margin: 0 10px;">LinkedIn</a>
-          <a href="https://github.com/chandan-cloudops" style="color: var(--text-secondary); margin: 0 10px;">GitHub</a>
-          <a href="https://hashnode.com/@chandan-cloudops" style="color: var(--text-secondary); margin: 0 10px;">Blog</a>
-        </div>
       </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
       // Navigation scroll effect
       window.addEventListener('scroll', () => {
@@ -831,10 +894,11 @@
 
       // Typing animation
       const typingText = document.getElementById('typing-text');
-      const texts = ['DevOps Engineer', 'Cloud Architect', 'Infrastructure Developer', 'Automation Specialist'];
+      const texts = ['DevOps Engineer', 'Cloud Architect', 'Kubernetes Expert', 'Automation Specialist'];
       let textIndex = 0;
       let charIndex = 0;
       let isDeleting = false;
+      let typingSpeed = 100;
 
       function type() {
         const currentText = texts[textIndex];
@@ -842,30 +906,32 @@
         if (isDeleting) {
           typingText.textContent = currentText.substring(0, charIndex - 1);
           charIndex--;
+          typingSpeed = 50;
         } else {
           typingText.textContent = currentText.substring(0, charIndex + 1);
           charIndex++;
+          typingSpeed = 100;
         }
 
         if (!isDeleting && charIndex === currentText.length) {
           isDeleting = true;
-          setTimeout(type, 2000);
+          typingSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
           isDeleting = false;
           textIndex = (textIndex + 1) % texts.length;
-          setTimeout(type, 500);
-        } else {
-          setTimeout(type, isDeleting ? 50 : 100);
+          typingSpeed = 500;
         }
+
+        setTimeout(type, typingSpeed);
       }
 
-      // 3D Tech Carousel
+      // 3D Tech Carousel - FIXED
       function createTechCarousel() {
         const carousel = document.getElementById('techCarousel');
         const techTools = [
-          'aws.png', 'kubernetes.png', 'docker.png', 'terraform.png', 
-          'jenkins.png', 'ansible.png', 'prometheus.png', 'grafana.png',
-          'git.png', 'linux.png', 'python.png', 'bash.png'
+          'aws.png', 'docker.png', 'kubernetes.png', 'terraform.png', 
+          'jenkins.png', 'ansible.png', 'github.png', 'linux.png',
+          'python.png', 'bash.png', 'prometheus.png', 'grafana.png'
         ];
 
         techTools.forEach((tool, index) => {
@@ -873,16 +939,37 @@
           item.className = 'tech-item';
           
           const angle = (index / techTools.length) * 360;
-          const radius = 400; // Increased radius for better spacing
+          const radius = 200; // Proper radius for good spacing
           
           item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
           
           const img = document.createElement('img');
+          // Use placeholder if image doesn't exist
           img.src = `images/${tool}`;
           img.alt = tool.split('.')[0];
+          img.onerror = function() {
+            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM4M0E0MCIvPgo8dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRldk9wczwvdGV4dD4KPC9zdmc+';
+          }
           
           item.appendChild(img);
           carousel.appendChild(item);
+        });
+      }
+
+      // Timeline animation
+      function animateTimeline() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => {
+          observer.observe(item);
         });
       }
 
@@ -890,41 +977,29 @@
       document.addEventListener('DOMContentLoaded', () => {
         type();
         createTechCarousel();
+        animateTimeline();
         
-        // Add scroll animations
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
             }
           });
-        }, observerOptions);
-
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-          section.style.opacity = '0';
-          section.style.transform = 'translateY(30px)';
-          section.style.transition = 'all 0.6s ease-out';
-          observer.observe(section);
         });
       });
 
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
+      // Fallback for tech images
+      window.addEventListener('load', function() {
+        const techImages = document.querySelectorAll('.tech-item img');
+        techImages.forEach(img => {
+          if (img.naturalWidth === 0) {
+            img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM4M0E0MCIvPgo8dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRldk9wczwvdGV4dD4KPC9zdmc+';
           }
         });
       });
