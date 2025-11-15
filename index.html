@@ -295,18 +295,33 @@
       }
 
       .tech-icon {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         margin: 0 auto 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.5rem;
         border-radius: 12px;
         transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
       }
 
       .tech-item:hover .tech-icon {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .tech-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        transition: all 0.3s ease;
+      }
+
+      .tech-item:hover .tech-icon img {
+        filter: brightness(1) invert(0);
         transform: scale(1.1);
       }
 
@@ -316,20 +331,6 @@
         font-size: 0.9rem;
         margin-top: 10px;
       }
-
-      /* Color classes for tech icons */
-      .tech-aws { color: #FF9900; }
-      .tech-docker { color: #2496ED; }
-      .tech-kubernetes { color: #326CE5; }
-      .tech-terraform { color: #7B42BC; }
-      .tech-jenkins { color: #D24939; }
-      .tech-ansible { color: #EE0000; }
-      .tech-github { color: #FFFFFF; }
-      .tech-linux { color: #FCC624; }
-      .tech-python { color: #3776AB; }
-      .tech-bash { color: #4EAA25; }
-      .tech-prometheus { color: #E6522C; }
-      .tech-grafana { color: #F46800; }
 
       /* =====================
          EXPERIENCE SECTION
@@ -574,6 +575,11 @@
           gap: 15px;
         }
 
+        .tech-icon {
+          width: 60px;
+          height: 60px;
+        }
+
         .section {
           padding: 60px 0;
         }
@@ -599,6 +605,11 @@
         .btn-custom {
           padding: 10px 20px;
           font-size: 0.9rem;
+        }
+
+        .tech-icon {
+          width: 50px;
+          height: 50px;
         }
       }
 
@@ -669,7 +680,7 @@
       </div>
     </section>
 
-    <!-- Tech Stack Section - UPDATED WITH VISIBLE ICONS -->
+    <!-- Tech Stack Section - UPDATED WITH YOUR EXACT IMAGES -->
     <section class="section tech-section" id="tech">
       <div class="container">
         <div class="section-title">
@@ -777,11 +788,10 @@
 
         <div class="projects-grid">
           <div class="project-card">
-            <div class="project-image">
+            <div class="project-image" style="background-image: url('images/proj_1.png')">
               <div class="project-overlay">
                 <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
-              Air-Gapped K8s
             </div>
             <div class="project-content">
               <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
@@ -790,11 +800,10 @@
           </div>
 
           <div class="project-card">
-            <div class="project-image">
+            <div class="project-image" style="background-image: url('images/proj_2.png')">
               <div class="project-overlay">
                 <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
-              Azure AKS + VNet
             </div>
             <div class="project-content">
               <h3 class="project-title">Azure AKS on Custom VNet</h3>
@@ -803,11 +812,10 @@
           </div>
 
           <div class="project-card">
-            <div class="project-image">
+            <div class="project-image" style="background-image: url('images/proj_3.png')">
               <div class="project-overlay">
                 <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
-              Private AKS + Bastion
             </div>
             <div class="project-content">
               <h3 class="project-title">Private AKS with Bastion</h3>
@@ -919,22 +927,26 @@
         setTimeout(type, typingSpeed);
       }
 
-      // Tech Stack Grid with colored icons
+      // Tech Stack Grid with your exact images
       function createTechGrid() {
         const techGrid = document.getElementById('techGrid');
         const techTools = [
-          { name: 'AWS', icon: '☁️', class: 'tech-aws' },
-          { name: 'Docker', icon: '🐳', class: 'tech-docker' },
-          { name: 'Kubernetes', icon: '⚓', class: 'tech-kubernetes' },
-          { name: 'Terraform', icon: '🏗️', class: 'tech-terraform' },
-          { name: 'Jenkins', icon: '⚙️', class: 'tech-jenkins' },
-          { name: 'Ansible', icon: '🔧', class: 'tech-ansible' },
-          { name: 'GitHub', icon: '🐙', class: 'tech-github' },
-          { name: 'Linux', icon: '🐧', class: 'tech-linux' },
-          { name: 'Python', icon: '🐍', class: 'tech-python' },
-          { name: 'Bash', icon: '💻', class: 'tech-bash' },
-          { name: 'Prometheus', icon: '📊', class: 'tech-prometheus' },
-          { name: 'Grafana', icon: '📈', class: 'tech-grafana' }
+          { name: 'AWS', image: 'images/aws.png' },
+          { name: 'Azure', image: 'images/azure.png' },
+          { name: 'GCP', image: 'images/gcp.png' },
+          { name: 'Kubernetes', image: 'images/kubernetes.png' },
+          { name: 'Terraform', image: 'images/terraform.png' },
+          { name: 'Jenkins', image: 'images/jenkins.png' },
+          { name: 'Ansible', image: 'images/ansible.png' },
+          { name: 'ArgoCD', image: 'images/argocd.png' },
+          { name: 'GitLab', image: 'images/gitlab.jpg' },
+          { name: 'Python', image: 'images/python.png' },
+          { name: 'Prometheus', image: 'images/promethius.png' },
+          { name: 'Grafana', image: 'images/grafana.png' },
+          { name: 'SonarQube', image: 'images/sonarqube.png' },
+          { name: 'Nexus', image: 'images/nexus.png' },
+          { name: 'Trivy', image: 'images/trivy.png' },
+          { name: 'Docker', image: 'images/action.png' } // Using action.png as Docker
         ];
 
         techTools.forEach((tool, index) => {
@@ -942,13 +954,22 @@
           item.className = `tech-item delay-${index % 6}`;
           
           const icon = document.createElement('div');
-          icon.className = `tech-icon ${tool.class}`;
-          icon.innerHTML = tool.icon;
+          icon.className = 'tech-icon';
+          
+          const img = document.createElement('img');
+          img.src = tool.image;
+          img.alt = tool.name;
+          img.onerror = function() {
+            // Fallback if image doesn't exist
+            this.style.display = 'none';
+            icon.innerHTML = `<span style="color: var(--neon-cyan); font-size: 2rem;">⚙️</span>`;
+          };
           
           const name = document.createElement('div');
           name.className = 'tech-name';
           name.textContent = tool.name;
           
+          icon.appendChild(img);
           item.appendChild(icon);
           item.appendChild(name);
           techGrid.appendChild(item);
