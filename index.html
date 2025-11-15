@@ -4,6 +4,7 @@
     <title>Chandan Kumar — DevOps & Cloud Engineer</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Chandan Kumar - DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -208,6 +209,7 @@
         cursor: pointer;
         font-size: 1rem;
         margin: 5px;
+        display: inline-block;
       }
 
       .btn-primary-custom {
@@ -310,7 +312,7 @@
          ===================== */
       .experience-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
         gap: 30px;
         margin-top: 40px;
       }
@@ -413,9 +415,16 @@
 
       .project-image {
         height: 180px;
+        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
         background-size: cover;
         background-position: center;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.1rem;
       }
 
       .project-overlay {
@@ -549,6 +558,11 @@
 
         .experience-grid {
           grid-template-columns: 1fr;
+        }
+        
+        .btn-custom {
+          padding: 10px 20px;
+          font-size: 0.9rem;
         }
       }
 
@@ -733,10 +747,11 @@
 
         <div class="projects-grid">
           <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_1.png')">
+            <div class="project-image">
               <div class="project-overlay">
                 <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
+              Air-Gapped K8s
             </div>
             <div class="project-content">
               <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
@@ -745,10 +760,11 @@
           </div>
 
           <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_2.png')">
+            <div class="project-image">
               <div class="project-overlay">
                 <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
+              Azure AKS + VNet
             </div>
             <div class="project-content">
               <h3 class="project-title">Azure AKS on Custom VNet</h3>
@@ -757,10 +773,11 @@
           </div>
 
           <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_3.png')">
+            <div class="project-image">
               <div class="project-overlay">
                 <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View Project</a>
               </div>
+              Private AKS + Bastion
             </div>
             <div class="project-content">
               <h3 class="project-title">Private AKS with Bastion</h3>
@@ -802,7 +819,8 @@
           </div>
           <div class="contact-card">
             <div class="contact-icon">💼</div>
-            <h3>Resume</h3>="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
+            <h3>Resume</h3>
+            <a href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
           </div>
         </div>
 
@@ -875,9 +893,9 @@
       function createTechCarousel() {
         const carousel = document.getElementById('techCarousel');
         const techTools = [
-          'aws.png', 'docker.png', 'kubernetes.png', 'terraform.png', 
-          'jenkins.png', 'ansible.png', 'github.png', 'linux.png',
-          'python.png', 'bash.png', 'prometheus.png', 'grafana.png'
+          'AWS', 'Docker', 'Kubernetes', 'Terraform', 
+          'Jenkins', 'Ansible', 'GitHub', 'Linux',
+          'Python', 'Bash', 'Prometheus', 'Grafana'
         ];
 
         techTools.forEach((tool, index) => {
@@ -889,14 +907,15 @@
           
           item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
           
-          const img = document.createElement('img');
-          img.src = `images/${tool}`;
-          img.alt = tool.split('.')[0];
-          img.onerror = function() {
-            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iOCIgZmlsbD0iIzM4M0E0MCIvPgo8dGV4dCB4PSIzMiIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkRldk9wczwvdGV4dD4KPC9zdmc+';
-          }
+          // Create text fallback since images might not exist
+          const toolText = document.createElement('div');
+          toolText.textContent = tool;
+          toolText.style.color = 'white';
+          toolText.style.fontWeight = '600';
+          toolText.style.fontSize = '0.8rem';
+          toolText.style.textAlign = 'center';
           
-          item.appendChild(img);
+          item.appendChild(toolText);
           carousel.appendChild(item);
         });
       }
@@ -941,4 +960,3 @@
     </script>
   </body>
 </html>
-
