@@ -47,6 +47,46 @@
         color: var(--text-primary);
         line-height: 1.6;
         overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Moving GIF Background */
+      .moving-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+        pointer-events: none;
+      }
+
+      .moving-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('about--.gif') center center;
+        background-size: cover;
+        animation: floatBackground 20s ease-in-out infinite;
+      }
+
+      @keyframes floatBackground {
+        0%, 100% { 
+          transform: translate(0, 0) scale(1);
+        }
+        25% { 
+          transform: translate(-10px, -10px) scale(1.05);
+        }
+        50% { 
+          transform: translate(-5px, 5px) scale(1.03);
+        }
+        75% { 
+          transform: translate(10px, 5px) scale(1.05);
+        }
       }
 
       /* =====================
@@ -147,9 +187,38 @@
       }
 
       .hero-content {
-        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
         position: relative;
         z-index: 2;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .profile-pic {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid transparent;
+        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink)) border-box;
+        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.2);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
       }
 
       .hero-badge {
@@ -182,8 +251,6 @@
         color: var(--text-secondary);
         margin-bottom: 40px;
         max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
       }
 
       .typing-container {
@@ -556,6 +623,28 @@
       /* =====================
          RESPONSIVE DESIGN
          ===================== */
+      @media (max-width: 992px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 40px;
+        }
+        
+        .profile-pic {
+          width: 280px;
+          height: 280px;
+        }
+        
+        .hero-text {
+          text-align: center;
+        }
+        
+        .hero-description {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
       @media (max-width: 768px) {
         .hero-title {
           font-size: 2.2rem;
@@ -582,6 +671,11 @@
 
         .section {
           padding: 60px 0;
+        }
+        
+        .profile-pic {
+          width: 220px;
+          height: 220px;
         }
       }
 
@@ -611,6 +705,11 @@
           width: 50px;
           height: 50px;
         }
+        
+        .profile-pic {
+          width: 180px;
+          height: 180px;
+        }
       }
 
       /* =====================
@@ -638,6 +737,9 @@
   </head>
 
   <body>
+    <!-- Moving GIF Background -->
+    <div class="moving-bg"></div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
       <div class="container">
@@ -661,20 +763,25 @@
     <section class="hero section" id="home">
       <div class="container">
         <div class="hero-content">
-          <div class="hero-badge">🚀 DevOps & Cloud Engineer</div>
-          <h1 class="hero-title">
-            Hi, I'm <span class="gradient-text">Chandan Kumar</span>
-          </h1>
-          <div class="typing-container">
-            I'm a <span id="typing-text"></span>
+          <div class="hero-text">
+            <div class="hero-badge">🚀 DevOps & Cloud Engineer</div>
+            <h1 class="hero-title">
+              Hi, I'm <span class="gradient-text">Chandan Kumar</span>
+            </h1>
+            <div class="typing-container">
+              I'm a <span id="typing-text"></span>
+            </div>
+            <p class="hero-description">
+              Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. 
+              Passionate about creating efficient, reliable systems.
+            </p>
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
+              <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
+            </div>
           </div>
-          <p class="hero-description">
-            Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. 
-            Passionate about creating efficient, reliable systems.
-          </p>
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
-            <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
+          <div class="hero-image">
+            <img src="my-profile-img.jpg" alt="Chandan Kumar" class="profile-pic">
           </div>
         </div>
       </div>
@@ -946,7 +1053,8 @@
           { name: 'SonarQube', image: 'images/sonarqube.png' },
           { name: 'Nexus', image: 'images/nexus.png' },
           { name: 'Trivy', image: 'images/trivy.png' },
-          { name: 'Docker', image: 'images/action.png' }
+          { name: 'Docker', image: 'docker.png' },
+          { name: 'GitHub Actions', image: 'github-action.png' }
         ];
 
         techTools.forEach((tool, index) => {
