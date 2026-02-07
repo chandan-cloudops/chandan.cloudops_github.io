@@ -1,1135 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Chandan Kumar — DevOps & Cloud Engineer</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Chandan Kumar - DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      /* =====================
-         MODERN DESIGN SYSTEM
-         ===================== */
-      :root {
-        --bg-900: #0a0f1c;
-        --bg-800: #111827;
-        --bg-700: #1f2937;
-        --neon-cyan: #00f5ff;
-        --neon-purple: #8b5cf6;
-        --neon-pink: #ec4899;
-        --accent: #3b82f6;
-        --text-primary: #f8fafc;
-        --text-secondary: #cbd5e1;
-        --text-muted: #64748b;
-        --glass: rgba(255,255,255,0.05);
-        --glass-dark: rgba(0,0,0,0.3);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background: linear-gradient(135deg, var(--bg-900) 0%, var(--bg-800) 50%, var(--bg-700) 100%);
-        color: var(--text-primary);
-        line-height: 1.6;
-        overflow-x: hidden;
-        position: relative;
-      }
-
-      /* Modern DevOps Animated Background */
-      .moving-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.1;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      .moving-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-          radial-gradient(circle at 10% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 90% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 70% 60%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
-        animation: pulseNodes 8s ease-in-out infinite;
-      }
-
-      @keyframes pulseNodes {
-        0%, 100% { 
-          opacity: 0.1;
-          transform: scale(1);
-        }
-        50% { 
-          opacity: 0.15;
-          transform: scale(1.05);
-        }
-      }
-
-      /* =====================
-         TYPOGRAPHY & LAYOUT
-         ===================== */
-      .section {
-        padding: 80px 0;
-        position: relative;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title .subtitle {
-        color: var(--neon-cyan);
-        font-size: 1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        display: block;
-      }
-
-      .section-title h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 15px;
-      }
-
-      .section-title .title-description {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      /* =====================
-         NAVIGATION
-         ===================== */
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(10, 15, 28, 0.95);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        z-index: 1000;
-        padding: 1rem 0;
-        transition: all 0.3s ease;
-      }
-
-      .navbar.scrolled {
-        background: rgba(10, 15, 28, 0.98);
-        padding: 0.8rem 0;
-      }
-
-      .nav-brand {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-decoration: none;
-      }
-
-      .nav-link {
-        color: var(--text-secondary) !important;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin: 0 10px;
-      }
-
-      .nav-link:hover {
-        color: var(--neon-cyan) !important;
-      }
-
-      /* =====================
-         HERO SECTION
-         ===================== */
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        padding-top: 80px;
-      }
-
-      .hero-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: center;
-        position: relative;
-        z-index: 2;
-      }
-
-      .hero-text {
-        text-align: left;
-      }
-
-      .hero-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .profile-pic {
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid transparent;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink)) border-box;
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.2);
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-      }
-
-      .hero-badge {
-        display: inline-block;
-        background: rgba(59, 130, 246, 0.1);
-        color: var(--neon-cyan);
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-      }
-
-      .hero-title {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        line-height: 1.1;
-      }
-
-      .hero-title .gradient-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-description {
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        margin-bottom: 40px;
-        max-width: 600px;
-      }
-
-      .typing-container {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 30px;
-        min-height: 50px;
-      }
-
-      #typing-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .btn-custom {
-        padding: 12px 32px;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        margin: 5px;
-        display: inline-block;
-      }
-
-      .btn-primary-custom {
-        background: linear-gradient(135deg, var(--accent), var(--neon-purple));
-        color: white;
-        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-      }
-
-      .btn-primary-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
-        color: white;
-      }
-
-      .btn-outline-custom {
-        background: transparent;
-        color: var(--text-primary);
-        border: 2px solid rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-      }
-
-      .btn-outline-custom:hover {
-        border-color: var(--neon-cyan);
-        transform: translateY(-2px);
-        color: var(--text-primary);
-      }
-
-      /* =====================
-         TECH STACK GRID SECTION - FIXED COLORS
-         ===================== */
-      .tech-section {
-        background: rgba(0,0,0,0.2);
-        position: relative;
-        overflow: hidden;
-        padding: 80px 0;
-      }
-
-      .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .tech-item {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 25px 15px;
-        text-align: center;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(30px);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .tech-item.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .tech-item:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .tech-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: left 0.5s ease;
-      }
-
-      .tech-item:hover::before {
-        left: 100%;
-      }
-
-      .tech-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.9); /* Light background for contrast */
-        padding: 15px;
-      }
-
-      .tech-item:hover .tech-icon {
-        transform: scale(1.1);
-        background: white; /* White background on hover */
-      }
-
-      .tech-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        /* REMOVED THE FILTER - Images will show in original colors */
-        transition: all 0.3s ease;
-      }
-
-      .tech-item:hover .tech-icon img {
-        transform: scale(1.1);
-        /* Keep original colors on hover */
-      }
-
-      .tech-name {
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-top: 10px;
-      }
-
-      /* =====================
-         EXPERIENCE SECTION
-         ===================== */
-      .experience-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-      }
-
-      .experience-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 30px;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .experience-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .experience-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .experience-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-      }
-
-      .experience-date {
-        color: var(--neon-cyan);
-        font-weight: 600;
-        margin-bottom: 10px;
-        display: block;
-        font-size: 0.9rem;
-      }
-
-      .experience-company {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 5px;
-        color: var(--text-primary);
-      }
-
-      .experience-position {
-        color: var(--text-secondary);
-        font-weight: 500;
-        margin-bottom: 20px;
-        font-size: 1rem;
-      }
-
-      .experience-content ul {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .experience-content li {
-        margin-bottom: 10px;
-        color: var(--text-secondary);
-        position: relative;
-        padding-left: 20px;
-        line-height: 1.5;
-      }
-
-      .experience-content li:before {
-        content: '▹';
-        color: var(--neon-cyan);
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-      }
-
-      /* =====================
-         PROJECTS GRID
-         ===================== */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .project-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        height: 100%;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .project-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .project-image {
-        height: 180px;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 1.1rem;
-      }
-
-      .project-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover .project-overlay {
-        opacity: 1;
-      }
-
-      .project-content {
-        padding: 20px;
-      }
-
-      .project-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: var(--text-primary);
-      }
-
-      .project-description {
-        color: var(--text-secondary);
-        margin-bottom: 15px;
-        line-height: 1.5;
-        font-size: 0.95rem;
-      }
-
-      /* =====================
-         CONTACT & FOOTER
-         ===================== */
-      .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .contact-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 25px;
-        text-align: center;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .contact-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .contact-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-      }
-
-      .contact-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--accent));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-        font-size: 1.2rem;
-      }
-
-      footer {
-        background: rgba(0,0,0,0.5);
-        padding: 30px 0;
-        text-align: center;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-
-      /* =====================
-         RESPONSIVE DESIGN
-         ===================== */
-      @media (max-width: 992px) {
-        .hero-content {
-          grid-template-columns: 1fr;
-          text-align: center;
-          gap: 40px;
-        }
-        
-        .profile-pic {
-          width: 280px;
-          height: 280px;
-        }
-        
-        .hero-text {
-          text-align: center;
-        }
-        
-        .hero-description {
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.2rem;
-        }
-
-        .section-title h2 {
-          font-size: 2rem;
-        }
-
-        .experience-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .tech-grid {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 15px;
-        }
-
-        .tech-icon {
-          width: 60px;
-          height: 60px;
-        }
-
-        .section {
-          padding: 60px 0;
-        }
-        
-        .profile-pic {
-          width: 220px;
-          height: 220px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero-title {
-          font-size: 1.8rem;
-        }
-        
-        .projects-grid {
-          grid-template-columns: 1fr;
-        }
-        
-        .tech-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .experience-grid {
-          grid-template-columns: 1fr;
-        }
-        
-        .btn-custom {
-          padding: 10px 20px;
-          font-size: 0.9rem;
-        }
-
-        .tech-icon {
-          width: 50px;
-          height: 50px;
-        }
-        
-        .profile-pic {
-          width: 180px;
-          height: 180px;
-        }
-      }
-
-      /* =====================
-         UTILITY CLASSES
-         ===================== */
-      .glass {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      /* Animation delays for staggered effect */
-      .delay-1 { transition-delay: 0.1s; }
-      .delay-2 { transition-delay: 0.2s; }
-      .delay-3 { transition-delay: 0.3s; }
-      .delay-4 { transition-delay: 0.4s; }
-      .delay-5 { transition-delay: 0.5s; }
-    </style>
-  </head>
-
-  <body>
-    <!-- Modern DevOps Animated Background -->
-    <div class="moving-bg"></div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-      <div class="container">
-        <a class="navbar-brand nav-brand" href="#">Chandan Kumar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tech">Tech Stack</a></li>
-            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          </ul>
-        </div>
+<head>
+  <title>Chandan Kumar — DevOps & Cloud Engineer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Senior DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* ======================
+   DESIGN SYSTEM
+====================== */
+:root {
+  --bg-900:#0a0f1c;
+  --bg-800:#111827;
+  --bg-700:#1f2937;
+  --cyan:#00f5ff;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --blue:#3b82f6;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --glass:rgba(255,255,255,0.05);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,var(--bg-900),var(--bg-800),var(--bg-700));
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ======================
+   BACKGROUND GRID
+====================== */
+.moving-bg{
+  position:fixed; inset:0; z-index:-1; opacity:.12;
+}
+.moving-bg::before{
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,245,255,.15), transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(139,92,246,.15), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(236,72,153,.15), transparent 50%);
+  animation:pulse 8s ease-in-out infinite;
+}
+.moving-bg::after{
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(0,245,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,.05) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes pulse{
+  50%{opacity:.2;transform:scale(1.05)}
+}
+@keyframes gridMove{
+  from{transform:translateY(0)}
+  to{transform:translateY(60px)}
+}
+
+/* ======================
+   NAVBAR
+====================== */
+.navbar{
+  position:fixed; width:100%;
+  backdrop-filter:blur(20px);
+  background:rgba(10,15,28,.9);
+  border-bottom:1px solid rgba(255,255,255,.1);
+  z-index:1000;
+}
+.navbar-brand{
+  font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.nav-link{color:var(--muted)!important}
+.nav-link:hover{color:var(--cyan)!important}
+
+/* ======================
+   HERO
+====================== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:80px;
+}
+.hero-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+.hero-text>*{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp .8s forwards;
+}
+.hero-text>*:nth-child(1){animation-delay:.2s}
+.hero-text>*:nth-child(2){animation-delay:.4s}
+.hero-text>*:nth-child(3){animation-delay:.6s}
+.hero-text>*:nth-child(4){animation-delay:.8s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:none}
+}
+
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+}
+.gradient{
+  background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.profile{
+  width:320px;height:320px;
+  border-radius:50%;
+  border:4px solid transparent;
+  background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink)) border-box;
+  box-shadow:0 20px 50px rgba(0,245,255,.3);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-15px)}
+}
+
+/* ======================
+   BUTTONS
+====================== */
+.btn-main{
+  padding:12px 32px;
+  border-radius:12px;
+  font-weight:600;
+  border:none;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:white;
+  box-shadow:0 10px 30px rgba(59,130,246,.4);
+}
+.btn-main:hover{transform:translateY(-3px)}
+
+/* ======================
+   SECTIONS
+====================== */
+.section{padding:80px 0}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{
+  font-size:2.4rem;
+  font-weight:800;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ======================
+   TECH STACK
+====================== */
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:25px;
+}
+.tech{
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  transition:.3s;
+  border:1px solid rgba(255,255,255,.1);
+}
+.tech:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 30px rgba(0,245,255,.4);
+}
+.tech img{width:60px;height:60px}
+
+/* ======================
+   PROJECTS
+====================== */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+}
+.project{
+  background:var(--glass);
+  border-radius:15px;
+  overflow:hidden;
+  transition:.3s;
+  transform-style:preserve-3d;
+}
+.project:hover{
+  box-shadow:0 20px 40px rgba(0,245,255,.3);
+}
+.project img{width:100%;height:180px;object-fit:cover}
+.project-content{padding:20px}
+
+/* ======================
+   CONTACT
+====================== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+.contact{
+  background:var(--glass);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+}
+
+/* ======================
+   FOOTER
+====================== */
+footer{
+  padding:30px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+/* ======================
+   SCROLL BAR
+====================== */
+#scroll-progress{
+  position:fixed;
+  top:0;left:0;
+  height:3px;width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  z-index:2000;
+}
+
+/* ======================
+   CURSOR GLOW
+====================== */
+.cursor{
+  position:fixed;
+  width:120px;height:120px;
+  background:radial-gradient(circle,rgba(0,245,255,.15),transparent 60%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+}
+
+@media(max-width:992px){
+  .hero-content{grid-template-columns:1fr;text-align:center}
+}
+</style>
+</head>
+
+<body>
+
+<div id="scroll-progress"></div>
+<div class="moving-bg"></div>
+<div class="cursor"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Chandan Kumar</a>
+  </div>
+</nav>
+
+<section class="hero container">
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="badge bg-primary mb-3">🚀 DevOps & Cloud Engineer</span>
+      <h1>Hi, I'm <span class="gradient">Chandan Kumar</span></h1>
+      <h4>I build scalable cloud & Kubernetes platforms</h4>
+      <p class="text-muted mt-3">
+        Designing resilient cloud infrastructure, automating CI/CD pipelines,
+        and scaling production Kubernetes workloads.
+      </p>
+      <a href="#projects" class="btn-main mt-3">View Projects</a>
+    </div>
+    <img src="images/my-profile-image.jpeg" class="profile" alt="Chandan Kumar">
+  </div>
+</section>
+
+<section class="section container" id="tech">
+  <div class="section-title"><h2>DevOps Toolbox</h2></div>
+  <div class="tech-grid">
+    <div class="tech"><img src="images/aws.png"><p>AWS</p></div>
+    <div class="tech"><img src="images/kubernetes.png"><p>Kubernetes</p></div>
+    <div class="tech"><img src="images/terraform.png"><p>Terraform</p></div>
+    <div class="tech"><img src="images/docker.png"><p>Docker</p></div>
+    <div class="tech"><img src="images/jenkins.png"><p>Jenkins</p></div>
+    <div class="tech"><img src="images/argocd.png"><p>ArgoCD</p></div>
+  </div>
+</section>
+
+<section class="section container" id="projects">
+  <div class="section-title"><h2>Featured Projects</h2></div>
+  <div class="projects">
+    <div class="project">
+      <img src="images/proj_1.png">
+      <div class="project-content">
+        <h5>Air-Gapped Kubernetes</h5>
+        <p>Secure offline Kubernetes cluster setup.</p>
       </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero section" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <div class="hero-badge">🚀 DevOps & Cloud Engineer</div>
-            <h1 class="hero-title">
-              Hi, I'm <span class="gradient-text">Chandan Kumar</span>
-            </h1>
-            <div class="typing-container">
-              I'm a <span id="typing-text"></span>
-            </div>
-            <p class="hero-description">
-              Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. 
-              Passionate about creating efficient, reliable systems.
-            </p>
-            <div class="hero-buttons">
-              <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
-              <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <!-- CORRECTED PROFILE IMAGE PATH -->
-            <img src="images/my-profile-image.jpeg" alt="Chandan Kumar" class="profile-pic">
-          </div>
-        </div>
+    </div>
+    <div class="project">
+      <img src="images/proj_2.png">
+      <div class="project-content">
+        <h5>Azure AKS VNet</h5>
+        <p>Terraform-based AKS deployment.</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Tech Stack Section - FIXED COLORS -->
-    <section class="section tech-section" id="tech">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Technologies</span>
-          <h2>DevOps Toolbox</h2>
-          <p class="title-description">Technologies and tools I use to build and deploy amazing infrastructure</p>
-        </div>
-        
-        <div class="tech-grid" id="techGrid">
-          <!-- Tech items will be populated by JavaScript -->
-        </div>
-      </div>
-    </section>
+<footer>
+  © 2024 Chandan Kumar — Built for scale ☁️
+</footer>
 
-    <!-- Experience Section -->
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Journey</span>
-          <h2>Work Experience</h2>
-          <p class="title-description">My professional journey in DevOps and cloud engineering</p>
-        </div>
+<script>
+/* Scroll progress */
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('scroll-progress').style.width=
+    (scrollY/h)*100+'%';
+});
 
-        <div class="experience-grid">
-          <!-- New Experience - October 2025 to Present -->
-          <div class="experience-card">
-            <span class="experience-date">October 2025 - Present</span>
-            <h3 class="experience-company">Fiat Payments.</h3>
-            <div class="experience-position">Senior DevOps Engineer</div>
-            <div class="experience-content">
-              <ul>
-                <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
-                <li>Implementing GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
-                <li>Optimizing CI/CD pipelines reducing deployment time by 60%</li>
-                <li>Mentoring team members and establishing DevOps best practices</li>
-              </ul>
-            </div>
-          </div>
+/* Cursor glow */
+const cursor=document.querySelector('.cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
 
-          <!-- Previous Experiences -->
-          <div class="experience-card">
-            <span class="experience-date">August 2023 - August 2025</span>
-            <h3 class="experience-company">Liane Care</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Designed and managed CI/CD pipelines using Jenkins, ArgoCD, and GitHub Actions</li>
-                <li>Implemented monitoring and alerting with Prometheus and Grafana for Kubernetes</li>
-                <li>Automated cloud infrastructure using Terraform and Ansible</li>
-                <li>Reduced provisioning time and human error through automation</li>
-              </ul>
-            </div>
-          </div>
+/* 3D tilt */
+document.querySelectorAll('.project').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left;
+    const y=e.clientY-r.top;
+    card.style.transform=
+      `rotateX(${((y/r.height)-.5)*10}deg)
+       rotateY(${((x/r.width)-.5)*-10}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='none');
+});
+</script>
 
-          <div class="experience-card">
-            <span class="experience-date">March 2023 - August 2023</span>
-            <h3 class="experience-company">SupplyOp Software</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Designed and implemented comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes</li>
-                <li>Automated cloud resource provisioning with Terraform and Ansible</li>
-                <li>Improved scalability and reduced infrastructure costs by 30%</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="experience-card">
-            <span class="experience-date">May 2022 - November 2022</span>
-            <h3 class="experience-company">Oodles Technologies</h3>
-            <div class="experience-position">Sr. Associate Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Managed end-to-end DevOps processes including source code management</li>
-                <li>Implemented CI/CD pipelines and containerization using Git, Jenkins, and Docker</li>
-                <li>Streamlined deployment processes across multiple environments</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="experience-card">
-            <span class="experience-date">October 2019 - January 2022</span>
-            <h3 class="experience-company">Ekstasis Technologies Pvt Ltd</h3>
-            <div class="experience-position">DevOps Engineer</div>
-            <div class="experience-content">
-              <ul>
-                <li>Configured and managed cloud infrastructure using AWS services (EC2, S3, RDS, VPC, IAM)</li>
-                <li>Implemented monitoring solutions and automated routine tasks</li>
-                <li>Collaborated with development teams to improve deployment processes</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Portfolio</span>
-          <h2>Featured Projects</h2>
-          <p class="title-description">Some of my recent DevOps and cloud projects</p>
-        </div>
-
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_1.png')">
-              <div class="project-overlay">
-                <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View Project</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
-              <p class="project-description">Comprehensive guide for setting up secure, isolated Kubernetes clusters with Terraform and manual registries.</p>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_2.png')">
-              <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View Project</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Azure AKS on Custom VNet</h3>
-              <p class="project-description">AKS cluster deployment with NGINX Ingress, External DNS and SSL configuration using Terraform.</p>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_3.png')">
-              <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View Project</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Private AKS with Bastion</h3>
-              <p class="project-description">Secure private AKS architecture using Bastion host and private ACR for secure deployments.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-5">
-          <a href="https://github.com/chandan-cloudops" class="btn btn-primary-custom btn-custom">View More on GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Get In Touch</span>
-          <h2>Contact Me</h2>
-          <p class="title-description">Let's discuss your next project or opportunity</p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="contact-icon">📍</div>
-            <h3>Location</h3>
-            <p>Mumbai, India</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">📞</div>
-            <h3>Phone</h3>
-            <p>+91-9304277008</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">📧</div>
-            <h3>Email</h3>
-            <p>chandan.cloudops@gmail.com</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">💼</div>
-            <h3>Resume</h3>
-            <a href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
-          </div>
-        </div>
-
-        <div class="text-center mt-5">
-          <div class="mb-3">
-            <a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-outline-custom btn-custom me-2">LinkedIn</a>
-            <a href="https://github.com/chandan-cloudops" class="btn btn-outline-custom btn-custom me-2">GitHub</a>
-            <a href="https://hashnode.com/@chandan-cloudops" class="btn btn-outline-custom btn-custom">Blog</a>
-          </div>
-          <p class="text-muted">Have a question? <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="text-decoration-none">Click Here</a></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 Chandan Kumar. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap & JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-      // Navigation scroll effect
-      window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 100) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      });
-
-      // Typing animation
-      const typingText = document.getElementById('typing-text');
-      const texts = ['DevOps Engineer', 'Cloud Architect', 'Kubernetes Expert', 'Automation Specialist'];
-      let textIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
-
-      function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-          typingText.textContent = currentText.substring(0, charIndex - 1);
-          charIndex--;
-          typingSpeed = 50;
-        } else {
-          typingText.textContent = currentText.substring(0, charIndex + 1);
-          charIndex++;
-          typingSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentText.length) {
-          isDeleting = true;
-          typingSpeed = 2000;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
-          typingSpeed = 500;
-        }
-
-        setTimeout(type, typingSpeed);
-      }
-
-      // Tech Stack Grid with your exact images - FIXED COLORS
-      function createTechGrid() {
-        const techGrid = document.getElementById('techGrid');
-        const techTools = [
-          { name: 'AWS', image: 'images/aws.png' },
-          { name: 'Azure', image: 'images/azure.png' },
-          { name: 'GCP', image: 'images/gcp.png' },
-          { name: 'Kubernetes', image: 'images/kubernetes.png' },
-          { name: 'Terraform', image: 'images/terraform.png' },
-          { name: 'Jenkins', image: 'images/jenkins.png' },
-          { name: 'Ansible', image: 'images/ansible.png' },
-          { name: 'ArgoCD', image: 'images/argocd.png' },
-          { name: 'GitLab', image: 'images/gitlab.jpg' },
-          { name: 'Python', image: 'images/python.png' },
-          { name: 'Prometheus', image: 'images/promethius.png' },
-          { name: 'Grafana', image: 'images/grafana.png' },
-          { name: 'SonarQube', image: 'images/sonarqube.png' },
-          { name: 'Nexus', image: 'images/nexus.png' },
-          { name: 'Trivy', image: 'images/trivy.png' },
-          { name: 'Docker', image: 'images/docker.png' },
-          { name: 'GitHub Actions', image: 'images/github-action.png' }
-        ];
-
-        techTools.forEach((tool, index) => {
-          const item = document.createElement('div');
-          item.className = `tech-item delay-${index % 6}`;
-          
-          const icon = document.createElement('div');
-          icon.className = 'tech-icon';
-          
-          const img = document.createElement('img');
-          img.src = tool.image;
-          img.alt = tool.name;
-          img.onerror = function() {
-            // Fallback if image doesn't exist
-            this.style.display = 'none';
-            icon.innerHTML = `<span style="color: var(--neon-cyan); font-size: 2rem;">⚙️</span>`;
-            icon.style.background = 'transparent'; // Remove background for fallback
-          };
-          
-          const name = document.createElement('div');
-          name.className = 'tech-name';
-          name.textContent = tool.name;
-          
-          icon.appendChild(img);
-          item.appendChild(icon);
-          item.appendChild(name);
-          techGrid.appendChild(item);
-        });
-      }
-
-      // Scroll animation for all elements
-      function animateOnScroll() {
-        const elements = document.querySelectorAll('.tech-item, .experience-card, .project-card, .contact-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { 
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        });
-
-        elements.forEach(element => {
-          observer.observe(element);
-        });
-      }
-
-      // Initialize everything when page loads
-      document.addEventListener('DOMContentLoaded', () => {
-        type();
-        createTechGrid();
-        animateOnScroll();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          });
-        });
-      });
-    </script>
-  </body>
+</body>
 </html>
-
-
-
