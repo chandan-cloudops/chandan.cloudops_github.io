@@ -1,4 +1,7 @@
- AOS.init({
+
+/*
+
+AOS.init({
  	duration: 800,
  	easing: 'slide'
  });
@@ -269,9 +272,251 @@
     fixedContentPos: false
   });
 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+(() => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Elements
+  const navbar = document.getElementById('navbar');
+  const scrollProgress = document.getElementById('scrollProgress');
+  const cursorGlow = document.getElementById('cursorGlow');
+  const toTop = document.getElementById('toTop');
+
+  // Year
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Scroll progress + navbar state + top button
+  function updateScrollUI() {
+    const y = window.scrollY || document.documentElement.scrollTop;
+
+    if (navbar) {
+      if (y > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    }
+
+    if (scrollProgress) {
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = height > 0 ? (y / height) * 100 : 0;
+      scrollProgress.style.width = progress + '%';
+    }
+
+    if (toTop) {
+      if (y > 600) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollUI, { passive: true });
+  updateScrollUI();
+
+  // Back to top
+  if (toTop) {
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  // Cursor glow
+  if (!prefersReducedMotion && cursorGlow) {
+    window.addEventListener('mousemove', (e) => {
+      cursorGlow.style.setProperty('--mx', e.clientX + 'px');
+      cursorGlow.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Typing animation
+  const typingText = document.getElementById('typing-text');
+  const texts = ['scalable infrastructure', 'GitOps automation', 'Kubernetes reliability', 'secure CI/CD pipelines'];
+  let textIndex = 0, charIndex = 0, isDeleting = false;
+
+  function type() {
+    if (!typingText) return;
+
+    const currentText = texts[textIndex];
+
+    if (isDeleting) {
+      typingText.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingText.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let delay = isDeleting ? 45 : 90;
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      delay = 1200;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      delay = 350;
+    }
+
+    setTimeout(type, delay);
+  }
+
+  // Tech grid
+  function createTechGrid() {
+    const techGrid = document.getElementById('techGrid');
+    if (!techGrid) return;
+
+    const techTools = [
+      { name: 'AWS', image: 'images/aws.png' },
+      { name: 'Azure', image: 'images/azure.png' },
+      { name: 'GCP', image: 'images/gcp.png' },
+      { name: 'Kubernetes', image: 'images/kubernetes.png' },
+      { name: 'Terraform', image: 'images/terraform.png' },
+      { name: 'Jenkins', image: 'images/jenkins.png' },
+      { name: 'Ansible', image: 'images/ansible.png' },
+      { name: 'ArgoCD', image: 'images/argocd.png' },
+      { name: 'GitLab', image: 'images/gitlab.jpg' },
+      { name: 'Python', image: 'images/python.png' },
+      { name: 'Prometheus', image: 'images/promethius.png' },
+      { name: 'Grafana', image: 'images/grafana.png' },
+      { name: 'SonarQube', image: 'images/sonarqube.png' },
+      { name: 'Nexus', image: 'images/nexus.png' },
+      { name: 'Trivy', image: 'images/trivy.png' },
+      { name: 'Docker', image: 'images/docker.png' },
+      { name: 'GitHub Actions', image: 'images/github-action.png' }
+    ];
+
+    techGrid.innerHTML = '';
+
+    techTools.forEach((tool, index) => {
+      const item = document.createElement('div');
+      item.className = 'tech-item reveal';
+      item.style.setProperty('--d', `${Math.min(index * 60, 600)}ms`);
+
+      const icon = document.createElement('div');
+      icon.className = 'tech-icon';
+
+      const img = document.createElement('img');
+      img.src = tool.image;
+      img.alt = tool.name;
+      img.loading = 'lazy';
+      img.onerror = function () {
+        this.style.display = 'none';
+        icon.innerHTML = `<span style="color: var(--neon-cyan); font-size: 2rem;">⚙️</span>`;
+        icon.style.background = 'transparent';
+      };
+
+      const name = document.createElement('div');
+      name.className = 'tech-name';
+      name.textContent = tool.name;
+
+      icon.appendChild(img);
+      item.appendChild(icon);
+      item.appendChild(name);
+      techGrid.appendChild(item);
+    });
+  }
+
+  // Reveal on scroll
+  function setupReveal() {
+    const elements = document.querySelectorAll('.reveal, .project-card, .contact-card, .timeline-item');
+    elements.forEach((el, i) => {
+      if (!el.classList.contains('reveal')) el.classList.add('reveal');
+      // stagger only if it doesn't already have
+      if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', `${Math.min(i * 70, 700)}ms`);
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    elements.forEach(el => io.observe(el));
+  }
+
+  // ScrollSpy active section
+  function setupScrollSpy() {
+    const sections = [...document.querySelectorAll('section[id]')];
+    const links = [...document.querySelectorAll('.nav-link[href^="#"]')];
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute('id');
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0.01 });
+
+    sections.forEach(sec => spy.observe(sec));
+  }
+
+  // Tilt + shine on project cards
+  function setupProjectTilt() {
+    if (prefersReducedMotion) return;
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (!card.querySelector('.shine')) {
+        const shine = document.createElement('div');
+        shine.className = 'shine';
+        card.appendChild(shine);
+      }
+
+      const maxTilt = 10;
+
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+
+        const px = (x / r.width) - 0.5;
+        const py = (y / r.height) - 0.5;
+
+        const rotateY = px * maxTilt;
+        const rotateX = -py * maxTilt;
+
+        card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        card.style.setProperty('--sx', `${(x / r.width) * 100}%`);
+        card.style.setProperty('--sy', `${(y / r.height) * 100}%`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    type();
+    createTechGrid();
+    setupReveal();
+    setupScrollSpy();
+    setupProjectTilt();
+  });
+})();
 
 
 
 
 })(jQuery);
+
 
