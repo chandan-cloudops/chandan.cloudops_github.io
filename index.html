@@ -1,1134 +1,946 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Chandan Kumar — DevOps & Cloud Engineer</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Chandan Kumar - DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      /* =====================
-         MODERN DESIGN SYSTEM
-         ===================== */
-      :root {
-        --bg-900: #0a0f1c;
-        --bg-800: #111827;
-        --bg-700: #1f2937;
-        --neon-cyan: #00f5ff;
-        --neon-purple: #8b5cf6;
-        --neon-pink: #ec4899;
-        --accent: #3b82f6;
-        --text-primary: #f8fafc;
-        --text-secondary: #cbd5e1;
-        --text-muted: #64748b;
-        --glass: rgba(255,255,255,0.05);
-        --glass-dark: rgba(0,0,0,0.3);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background: linear-gradient(135deg, var(--bg-900) 0%, var(--bg-800) 50%, var(--bg-700) 100%);
-        color: var(--text-primary);
-        line-height: 1.6;
-        overflow-x: hidden;
-        position: relative;
-      }
-
-      /* Modern DevOps Animated Background */
-      .moving-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.1;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      .moving-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-          radial-gradient(circle at 10% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 90% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 70% 60%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
-        animation: pulseNodes 8s ease-in-out infinite;
-      }
-
-      @keyframes pulseNodes {
-        0%, 100% { 
-          opacity: 0.1;
-          transform: scale(1);
-        }
-        50% { 
-          opacity: 0.15;
-          transform: scale(1.05);
-        }
-      }
-
-      /* =====================
-         TYPOGRAPHY & LAYOUT
-         ===================== */
-      .section {
-        padding: 80px 0;
-        position: relative;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 50px;
-      }
-
-      .section-title .subtitle {
-        color: var(--neon-cyan);
-        font-size: 1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        display: block;
-      }
-
-      .section-title h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 15px;
-      }
-
-      .section-title .title-description {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      /* =====================
-         NAVIGATION
-         ===================== */
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(10, 15, 28, 0.95);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        z-index: 1000;
-        padding: 1rem 0;
-        transition: all 0.3s ease;
-      }
-
-      .navbar.scrolled {
-        background: rgba(10, 15, 28, 0.98);
-        padding: 0.8rem 0;
-      }
-
-      .nav-brand {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-decoration: none;
-      }
-
-      .nav-link {
-        color: var(--text-secondary) !important;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin: 0 10px;
-      }
-
-      .nav-link:hover {
-        color: var(--neon-cyan) !important;
-      }
-
-      /* =====================
-         HERO SECTION
-         ===================== */
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        padding-top: 80px;
-      }
-
-      .hero-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: center;
-        position: relative;
-        z-index: 2;
-      }
-
-      .hero-text {
-        text-align: left;
-      }
-
-      .hero-image {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .profile-pic {
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid transparent;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink)) border-box;
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.2);
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
-      }
-
-      .hero-badge {
-        display: inline-block;
-        background: rgba(59, 130, 246, 0.1);
-        color: var(--neon-cyan);
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-      }
-
-      .hero-title {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        line-height: 1.1;
-      }
-
-      .hero-title .gradient-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero-description {
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        margin-bottom: 40px;
-        max-width: 600px;
-      }
-
-      .typing-container {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 30px;
-        min-height: 50px;
-      }
-
-      #typing-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .btn-custom {
-        padding: 12px 32px;
-        border-radius: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        margin: 5px;
-        display: inline-block;
-      }
-
-      .btn-primary-custom {
-        background: linear-gradient(135deg, var(--accent), var(--neon-purple));
-        color: white;
-        box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-      }
-
-      .btn-primary-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
-        color: white;
-      }
-
-      .btn-outline-custom {
-        background: transparent;
-        color: var(--text-primary);
-        border: 2px solid rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-      }
-
-      .btn-outline-custom:hover {
-        border-color: var(--neon-cyan);
-        transform: translateY(-2px);
-        color: var(--text-primary);
-      }
-
-      /* =====================
-         TECH STACK GRID SECTION - FIXED COLORS
-         ===================== */
-      .tech-section {
-        background: rgba(0,0,0,0.2);
-        position: relative;
-        overflow: hidden;
-        padding: 80px 0;
-      }
-
-      .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .tech-item {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 25px 15px;
-        text-align: center;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(30px);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .tech-item.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .tech-item:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .tech-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-        transition: left 0.5s ease;
-      }
-
-      .tech-item:hover::before {
-        left: 100%;
-      }
-
-      .tech-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        background: rgba(255, 255, 255, 0.9); /* Light background for contrast */
-        padding: 15px;
-      }
-
-      .tech-item:hover .tech-icon {
-        transform: scale(1.1);
-        background: white; /* White background on hover */
-      }
-
-      .tech-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        /* REMOVED THE FILTER - Images will show in original colors */
-        transition: all 0.3s ease;
-      }
-
-      .tech-item:hover .tech-icon img {
-        transform: scale(1.1);
-        /* Keep original colors on hover */
-      }
-
-      .tech-name {
-        color: var(--text-primary);
-        font-weight: 600;
-        font-size: 0.9rem;
-        margin-top: 10px;
-      }
-
-      /* =====================
-         EXPERIENCE SECTION
-         ===================== */
-      .experience-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-      }
-
-      .experience-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 30px;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .experience-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .experience-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .experience-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-      }
-
-      .experience-date {
-        color: var(--neon-cyan);
-        font-weight: 600;
-        margin-bottom: 10px;
-        display: block;
-        font-size: 0.9rem;
-      }
-
-      .experience-company {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 5px;
-        color: var(--text-primary);
-      }
-
-      .experience-position {
-        color: var(--text-secondary);
-        font-weight: 500;
-        margin-bottom: 20px;
-        font-size: 1rem;
-      }
-
-      .experience-content ul {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .experience-content li {
-        margin-bottom: 10px;
-        color: var(--text-secondary);
-        position: relative;
-        padding-left: 20px;
-        line-height: 1.5;
-      }
-
-      .experience-content li:before {
-        content: '▹';
-        color: var(--neon-cyan);
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-      }
-
-      /* =====================
-         PROJECTS GRID
-         ===================== */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .project-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        height: 100%;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .project-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
-      }
-
-      .project-image {
-        height: 180px;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 1.1rem;
-      }
-
-      .project-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      .project-card:hover .project-overlay {
-        opacity: 1;
-      }
-
-      .project-content {
-        padding: 20px;
-      }
-
-      .project-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-        color: var(--text-primary);
-      }
-
-      .project-description {
-        color: var(--text-secondary);
-        margin-bottom: 15px;
-        line-height: 1.5;
-        font-size: 0.95rem;
-      }
-
-      /* =====================
-         CONTACT & FOOTER
-         ===================== */
-      .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 25px;
-        margin-top: 40px;
-      }
-
-      .contact-card {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        padding: 25px;
-        text-align: center;
-        border: 1px solid rgba(255,255,255,0.1);
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      .contact-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .contact-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--neon-cyan);
-      }
-
-      .contact-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--accent));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-        font-size: 1.2rem;
-      }
-
-      footer {
-        background: rgba(0,0,0,0.5);
-        padding: 30px 0;
-        text-align: center;
-        border-top: 1px solid rgba(255,255,255,0.1);
-      }
-
-      /* =====================
-         RESPONSIVE DESIGN
-         ===================== */
-      @media (max-width: 992px) {
-        .hero-content {
-          grid-template-columns: 1fr;
-          text-align: center;
-          gap: 40px;
-        }
-        
-        .profile-pic {
-          width: 280px;
-          height: 280px;
-        }
-        
-        .hero-text {
-          text-align: center;
-        }
-        
-        .hero-description {
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.2rem;
-        }
-
-        .section-title h2 {
-          font-size: 2rem;
-        }
-
-        .experience-grid {
-          grid-template-columns: 1fr;
-          gap: 20px;
-        }
-
-        .tech-grid {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 15px;
-        }
-
-        .tech-icon {
-          width: 60px;
-          height: 60px;
-        }
-
-        .section {
-          padding: 60px 0;
-        }
-        
-        .profile-pic {
-          width: 220px;
-          height: 220px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero-title {
-          font-size: 1.8rem;
-        }
-        
-        .projects-grid {
-          grid-template-columns: 1fr;
-        }
-        
-        .tech-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .experience-grid {
-          grid-template-columns: 1fr;
-        }
-        
-        .btn-custom {
-          padding: 10px 20px;
-          font-size: 0.9rem;
-        }
-
-        .tech-icon {
-          width: 50px;
-          height: 50px;
-        }
-        
-        .profile-pic {
-          width: 180px;
-          height: 180px;
-        }
-      }
-
-      /* =====================
-         UTILITY CLASSES
-         ===================== */
-      .glass {
-        background: var(--glass);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      /* Animation delays for staggered effect */
-      .delay-1 { transition-delay: 0.1s; }
-      .delay-2 { transition-delay: 0.2s; }
-      .delay-3 { transition-delay: 0.3s; }
-      .delay-4 { transition-delay: 0.4s; }
-      .delay-5 { transition-delay: 0.5s; }
-    </style>
-  </head>
-
-  <body>
-    <!-- Modern DevOps Animated Background -->
-    <div class="moving-bg"></div>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-      <div class="container">
-        <a class="navbar-brand nav-brand" href="#">Chandan Kumar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tech">Tech Stack</a></li>
-            <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          </ul>
-        </div>
+<head>
+  <title>Chandan Kumar — DevOps & Cloud Engineer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Chandan Kumar - DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       RUGR-LIKE (LIGHT + GREEN) DESIGN SYSTEM + SAFE ANIMATIONS
+       ========================================================= */
+    :root{
+      --bg: #f6faf7;
+      --surface: rgba(255,255,255,.86);
+      --surface-2: #ffffff;
+      --line: rgba(16, 24, 40, .10);
+      --text: #0b1220;
+      --muted: rgba(11,18,32,.66);
+      --muted2: rgba(11,18,32,.52);
+
+      --green: #16a34a;
+      --green2:#22c55e;
+      --green3:#86efac;
+
+      --shadow: 0 18px 45px rgba(11,18,32,.08);
+      --shadow2: 0 10px 26px rgba(11,18,32,.06);
+
+      --r1: 16px;
+      --r2: 22px;
+      --r3: 28px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* make anchor jumps land below navbar */
+    section[id]{ scroll-margin-top: 88px; }
+
+    /* Top progress bar */
+    .top-progress{
+      position: fixed;
+      top:0;left:0;
+      height:3px;
+      width:0%;
+      background: linear-gradient(90deg, var(--green), var(--green2));
+      z-index: 3000;
+    }
+
+    /* Cursor glow (subtle) */
+    .cursor-glow{
+      position: fixed;
+      inset:0;
+      pointer-events:none;
+      z-index: 0;
+    }
+    .cursor-glow::before{
+      content:"";
+      position:absolute;
+      width: 440px;
+      height: 440px;
+      left: var(--mx, 50%);
+      top: var(--my, 20%);
+      transform: translate(-50%,-50%);
+      background: radial-gradient(circle, rgba(34,197,94,.18), transparent 60%);
+      filter: blur(12px);
+      opacity: .9;
+    }
+
+    /* Background blobs + grid (RUGR-ish clean) */
+    .bg-wrap{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .blob{
+      position:absolute;
+      border-radius: 999px;
+      filter: blur(40px);
+      opacity: .65;
+    }
+    .b1{width:520px;height:520px;left:-140px;top:-180px;background: radial-gradient(circle, rgba(34,197,94,.35), transparent 62%);}
+    .b2{width:520px;height:520px;right:-170px;top:-130px;background: radial-gradient(circle, rgba(22,163,74,.28), transparent 62%);}
+    .grid{
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(11,18,32,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11,18,32,0.05) 1px, transparent 1px);
+      background-size: 46px 46px;
+      opacity:.25;
+      mask-image: radial-gradient(circle at 28% 10%, #000 0%, transparent 55%);
+    }
+
+    /* Navbar */
+    .navbar{
+      position: fixed;
+      top:0;
+      width:100%;
+      z-index: 2000;
+      background: rgba(246,250,247,.78);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      padding: .9rem 0;
+      transition: .2s ease;
+    }
+    .navbar.scrolled{
+      padding: .75rem 0;
+      background: rgba(246,250,247,.92);
+    }
+    .nav-brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 900;
+      text-decoration:none;
+      color: var(--text);
+      letter-spacing: -.3px;
+    }
+    .brand-mark{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 30%, var(--green3), var(--green));
+      box-shadow: 0 10px 26px rgba(34,197,94,.18);
+    }
+    .nav-link{
+      color: rgba(11,18,32,.70) !important;
+      font-weight: 800;
+      transition: .2s ease;
+      margin: 0 8px;
+      border-radius: 12px;
+      padding: 8px 10px !important;
+    }
+    .nav-link:hover{
+      background: rgba(34,197,94,.10);
+      color: rgba(11,18,32,.92) !important;
+    }
+
+    /* Buttons */
+    .btn-custom{
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 900;
+      text-decoration:none;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      border: 1px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+    }
+    .btn-custom:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); }
+    .btn-primary-custom{
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: #fff !important;
+      box-shadow: 0 14px 34px rgba(34,197,94,.18);
+    }
+    .btn-outline-custom{
+      background: rgba(11,18,32,.03);
+      border-color: rgba(11,18,32,.10);
+      color: rgba(11,18,32,.86) !important;
+    }
+    .btn-outline-custom:hover{ background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.18); }
+
+    /* Layout */
+    .section{ padding: 80px 0; }
+    .soft{ background: rgba(255,255,255,.50); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .container{ max-width: 1200px; }
+
+    .section-title{
+      text-align:center;
+      margin-bottom: 40px;
+    }
+    .section-title .subtitle{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.18);
+      color: rgba(11,18,32,.78);
+      font-size: .92rem;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .section-title .subtitle::before{
+      content:"";
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      background: var(--green2);
+      box-shadow: 0 0 18px rgba(34,197,94,.35);
+    }
+    .section-title h2{
+      margin-top: 14px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 950;
+      letter-spacing: -1px;
+      color: rgba(11,18,32,.95);
+    }
+    .section-title .title-description{
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 10px auto 0;
+      font-weight: 650;
+    }
+
+    /* HERO */
+    .hero{
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      padding-top: 92px;
+      position:relative;
+    }
+    .hero-content{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items:center;
+    }
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.18);
+      color: rgba(11,18,32,.78);
+      font-weight: 900;
+    }
+    .hero-title{
+      font-size: clamp(2.1rem, 3.6vw, 3.25rem);
+      font-weight: 950;
+      line-height: 1.06;
+      letter-spacing: -1px;
+      margin: 14px 0 10px;
+    }
+    .gradient-text{
+      color: var(--green);
+    }
+    .hero-description{
+      font-size: 1.06rem;
+      color: var(--muted);
+      font-weight: 650;
+      margin: 14px 0 22px;
+      max-width: 62ch;
+    }
+    .typing-container{
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: rgba(11,18,32,.72);
+      min-height: 28px;
+    }
+    #typing-text{
+      color: var(--green);
+    }
+
+    /* Right hero card */
+    .profile-shell{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r3);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .profile-top{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+    }
+    .profile-pic{
+      width: 84px;
+      height: 84px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid rgba(11,18,32,.10);
+      box-shadow: 0 10px 22px rgba(11,18,32,.08);
+    }
+    .p-name{ font-weight: 950; letter-spacing:-.3px; }
+    .p-role{ color: var(--muted2); font-weight: 850; margin-top: 2px; }
+    .p-mini{ margin-top: 6px; font-weight: 900; color: rgba(11,18,32,.72); }
+
+    .p-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .p-badges span{
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.18);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .86rem;
+      color: rgba(11,18,32,.78);
+    }
+    .p-actions{
+      display:flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* RUGR style stats row */
+    .hero-stats{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .stat{
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: var(--r2);
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .stat b{ font-weight: 950; }
+    .stat div{ margin-top: 4px; color: var(--muted2); font-weight: 800; font-size: .92rem; }
+
+    /* Cards (Tech/Experience/Projects/Contact) */
+    .card-soft{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r2);
+      box-shadow: var(--shadow2);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card-soft:hover{
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: rgba(34,197,94,.22);
+    }
+
+    /* Tech grid */
+    .tech-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .tech-item{
+      padding: 18px 14px;
+      text-align:center;
+    }
+    .tech-icon{
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 10px;
+      border-radius: 18px;
+      background: rgba(11,18,32,.03);
+      border: 1px solid rgba(11,18,32,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px;
+    }
+    .tech-icon img{
+      width:100%;
+      height:100%;
+      object-fit: contain;
+    }
+    .tech-name{
+      color: rgba(11,18,32,.78);
+      font-weight: 900;
+      font-size: .92rem;
+    }
+
+    /* Experience */
+    .experience-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .experience-card{
+      padding: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .experience-card::before{
+      content:"";
+      position:absolute;
+      top:0;left:0;right:0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green2));
+    }
+    .experience-date{ color: rgba(11,18,32,.62); font-weight: 900; font-size:.92rem; }
+    .experience-company{ font-weight: 950; letter-spacing:-.3px; margin-top: 6px; }
+    .experience-position{ color: var(--muted2); font-weight: 850; margin-top: 2px; }
+    .experience-content ul{ margin: 12px 0 0; padding-left: 18px; }
+    .experience-content li{ margin: 8px 0; color: var(--muted); font-weight: 700; }
+
+    /* Projects */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .project-card{ overflow:hidden; }
+    .project-image{
+      height: 180px;
+      background-size: cover;
+      background-position:center;
+      border-bottom: 1px solid var(--line);
+      position:relative;
+    }
+    .project-overlay{
+      position:absolute; inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(11,18,32,.60);
+      opacity:0;
+      transition: .2s ease;
+    }
+    .project-card:hover .project-overlay{ opacity:1; }
+    .project-content{ padding: 16px; }
+    .project-title{ font-weight: 950; letter-spacing:-.3px; }
+    .project-description{ margin-top: 6px; color: var(--muted); font-weight: 650; }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .contact-card{
+      padding: 18px;
+      text-align:center;
+    }
+    .contact-icon{
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      margin: 0 auto 10px;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 1.15rem;
+    }
+    .contact-card h3{ font-weight: 950; letter-spacing:-.2px; margin-top: 6px; }
+    .contact-card p{ margin-top: 6px; color: var(--muted); font-weight: 750; }
+
+    /* Footer */
+    footer{
+      background: rgba(255,255,255,.55);
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+      text-align:center;
+      color: rgba(11,18,32,.62);
+      font-weight: 800;
+    }
+
+    /* -------------------------------------------
+       SAFE REVEAL ANIMATION (Fix "contact not showing")
+       Default: visible (so no blank screen).
+       Only hide & animate when JS sets html.js
+    ------------------------------------------- */
+    .reveal{ opacity: 1; transform: none; }
+    html.js .reveal{
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .7s ease, transform .7s ease;
+      transition-delay: var(--d, 0ms);
+    }
+    html.js .reveal.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px){
+      .hero-content{ grid-template-columns: 1fr; text-align:center; }
+      .hero-description{ margin-left:auto; margin-right:auto; }
+      .profile-top{ justify-content:center; }
+      .hero-stats{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px){
+      .section{ padding: 64px 0; }
+      .experience-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-progress" id="topProgress"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grid"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg" id="navbar">
+    <div class="container">
+      <a class="navbar-brand nav-brand" href="#home">
+        <span class="brand-mark"></span>
+        Chandan Kumar
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tech">Tech Stack</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a href="#contact" class="btn btn-primary-custom btn-custom">Let’s Talk</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero section" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <div class="hero-badge">🚀 DevOps & Cloud Engineer</div>
-            <h1 class="hero-title">
-              Hi, I'm <span class="gradient-text">Chandan Kumar</span>
-            </h1>
-            <div class="typing-container">
-              I'm a <span id="typing-text"></span>
-            </div>
-            <p class="hero-description">
-              Building scalable cloud infrastructure and automating DevOps workflows with cutting-edge technologies. 
-              Passionate about creating efficient, reliable systems.
-            </p>
-            <div class="hero-buttons">
-              <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
-              <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <!-- CORRECTED PROFILE IMAGE PATH -->
-            <img src="images/my-profile-image.jpeg" alt="Chandan Kumar" class="profile-pic">
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero section" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text reveal">
+          <div class="hero-badge">🚀 DevOps & Cloud Engineer</div>
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Chandan Kumar</span><br/>
+            I build reliable cloud platforms.
+          </h1>
 
-    <!-- Tech Stack Section - FIXED COLORS -->
-    <section class="section tech-section" id="tech">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Technologies</span>
-          <h2>DevOps Toolbox</h2>
-          <p class="title-description">Technologies and tools I use to build and deploy amazing infrastructure</p>
-        </div>
-        
-        <div class="tech-grid" id="techGrid">
-          <!-- Tech items will be populated by JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Journey</span>
-          <h2>Work Experience</h2>
-          <p class="title-description">My professional journey in DevOps and cloud engineering</p>
-        </div>
-
-        <div class="experience-grid">
-          <!-- New Experience - October 2025 to Present -->
-          <div class="experience-card">
-            <span class="experience-date">October 2025 - Present</span>
-            <h3 class="experience-company">Fiat Payments.</h3>
-            <div class="experience-position">Senior DevOps Engineer</div>
-            <div class="experience-content">
-              <ul>
-                <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
-                <li>Implementing GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
-                <li>Optimizing CI/CD pipelines reducing deployment time by 60%</li>
-                <li>Mentoring team members and establishing DevOps best practices</li>
-              </ul>
-            </div>
+          <div class="typing-container">
+            Focus: <span id="typing-text"></span>
           </div>
 
-          <!-- Previous Experiences -->
-          <div class="experience-card">
-            <span class="experience-date">August 2023 - August 2025</span>
-            <h3 class="experience-company">Liane Care</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Designed and managed CI/CD pipelines using Jenkins, ArgoCD, and GitHub Actions</li>
-                <li>Implemented monitoring and alerting with Prometheus and Grafana for Kubernetes</li>
-                <li>Automated cloud infrastructure using Terraform and Ansible</li>
-                <li>Reduced provisioning time and human error through automation</li>
-              </ul>
-            </div>
+          <p class="hero-description">
+            Building scalable cloud infrastructure and automating DevOps workflows with Kubernetes, Terraform,
+            CI/CD and observability — focused on stable uptime and faster releases.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 justify-content-lg-start justify-content-center">
+            <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
+            <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
           </div>
 
-          <div class="experience-card">
-            <span class="experience-date">March 2023 - August 2023</span>
-            <h3 class="experience-company">SupplyOp Software</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Designed and implemented comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes</li>
-                <li>Automated cloud resource provisioning with Terraform and Ansible</li>
-                <li>Improved scalability and reduced infrastructure costs by 30%</li>
-              </ul>
+          <div class="hero-stats">
+            <div class="stat card-soft">
+              <b>60%</b>
+              <div>Faster deployments</div>
             </div>
-          </div>
-
-          <div class="experience-card">
-            <span class="experience-date">May 2022 - November 2022</span>
-            <h3 class="experience-company">Oodles Technologies</h3>
-            <div class="experience-position">Sr. Associate Consultant DevOps</div>
-            <div class="experience-content">
-              <ul>
-                <li>Managed end-to-end DevOps processes including source code management</li>
-                <li>Implemented CI/CD pipelines and containerization using Git, Jenkins, and Docker</li>
-                <li>Streamlined deployment processes across multiple environments</li>
-              </ul>
+            <div class="stat card-soft">
+              <b>Multi-cloud</b>
+              <div>AWS / Azure / GCP</div>
             </div>
-          </div>
-
-          <div class="experience-card">
-            <span class="experience-date">October 2019 - January 2022</span>
-            <h3 class="experience-company">Ekstasis Technologies Pvt Ltd</h3>
-            <div class="experience-position">DevOps Engineer</div>
-            <div class="experience-content">
-              <ul>
-                <li>Configured and managed cloud infrastructure using AWS services (EC2, S3, RDS, VPC, IAM)</li>
-                <li>Implemented monitoring solutions and automated routine tasks</li>
-                <li>Collaborated with development teams to improve deployment processes</li>
-              </ul>
+            <div class="stat card-soft">
+              <b>GitOps</b>
+              <div>ArgoCD workflows</div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Portfolio</span>
-          <h2>Featured Projects</h2>
-          <p class="title-description">Some of my recent DevOps and cloud projects</p>
-        </div>
-
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_1.png')">
-              <div class="project-overlay">
-                <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View Project</a>
+        <div class="hero-image reveal" style="--d:120ms">
+          <div class="profile-shell">
+            <div class="profile-top">
+              <img src="images/my-profile-image.jpeg" alt="Chandan Kumar" class="profile-pic">
+              <div>
+                <div class="p-name">Chandan Kumar</div>
+                <div class="p-role">Senior DevOps Engineer</div>
+                <div class="p-mini">Mumbai, India</div>
               </div>
             </div>
-            <div class="project-content">
-              <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
-              <p class="project-description">Comprehensive guide for setting up secure, isolated Kubernetes clusters with Terraform and manual registries.</p>
-            </div>
-          </div>
 
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_2.png')">
-              <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View Project</a>
-              </div>
+            <div class="p-badges">
+              <span>Kubernetes</span><span>Terraform</span><span>CI/CD</span><span>Monitoring</span><span>Security</span>
             </div>
-            <div class="project-content">
-              <h3 class="project-title">Azure AKS on Custom VNet</h3>
-              <p class="project-description">AKS cluster deployment with NGINX Ingress, External DNS and SSL configuration using Terraform.</p>
-            </div>
-          </div>
 
-          <div class="project-card">
-            <div class="project-image" style="background-image: url('images/proj_3.png')">
-              <div class="project-overlay">
-                <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View Project</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Private AKS with Bastion</h3>
-              <p class="project-description">Secure private AKS architecture using Bastion host and private ACR for secure deployments.</p>
+            <div class="p-actions">
+              <a href="#contact" class="btn btn-primary-custom btn-custom">Work with me</a>
+              <a href="https://github.com/chandan-cloudops" target="_blank" class="btn btn-outline-custom btn-custom">GitHub</a>
             </div>
           </div>
         </div>
 
-        <div class="text-center mt-5">
-          <a href="https://github.com/chandan-cloudops" class="btn btn-primary-custom btn-custom">View More on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section soft" id="tech">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="subtitle">Technologies</span>
+        <h2>DevOps Toolbox</h2>
+        <p class="title-description">Technologies and tools I use to build and deploy production infrastructure.</p>
+      </div>
+
+      <div class="tech-grid" id="techGrid">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="subtitle">Journey</span>
+        <h2>Work Experience</h2>
+        <p class="title-description">My professional journey in DevOps and cloud engineering.</p>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card card-soft reveal">
+          <span class="experience-date">October 2025 - Present</span>
+          <h3 class="experience-company">Fiat Payments.</h3>
+          <div class="experience-position">Senior DevOps Engineer</div>
+          <div class="experience-content">
+            <ul>
+              <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
+              <li>Implementing GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
+              <li>Optimizing CI/CD pipelines reducing deployment time by 60%</li>
+              <li>Mentoring team members and establishing DevOps best practices</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card card-soft reveal" style="--d:90ms">
+          <span class="experience-date">August 2023 - August 2025</span>
+          <h3 class="experience-company">Liane Care</h3>
+          <div class="experience-position">Freelance Consultant DevOps</div>
+          <div class="experience-content">
+            <ul>
+              <li>Designed and managed CI/CD pipelines using Jenkins, ArgoCD, and GitHub Actions</li>
+              <li>Implemented monitoring and alerting with Prometheus and Grafana for Kubernetes</li>
+              <li>Automated cloud infrastructure using Terraform and Ansible</li>
+              <li>Reduced provisioning time and human error through automation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card card-soft reveal" style="--d:180ms">
+          <span class="experience-date">March 2023 - August 2023</span>
+          <h3 class="experience-company">SupplyOp Software</h3>
+          <div class="experience-position">Freelance Consultant DevOps</div>
+          <div class="experience-content">
+            <ul>
+              <li>Designed and implemented comprehensive DevOps pipeline using Jenkins, Docker, Kubernetes</li>
+              <li>Automated cloud resource provisioning with Terraform and Ansible</li>
+              <li>Improved scalability and reduced infrastructure costs by 30%</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card card-soft reveal" style="--d:270ms">
+          <span class="experience-date">May 2022 - November 2022</span>
+          <h3 class="experience-company">Oodles Technologies</h3>
+          <div class="experience-position">Sr. Associate Consultant DevOps</div>
+          <div class="experience-content">
+            <ul>
+              <li>Managed end-to-end DevOps processes including source code management</li>
+              <li>Implemented CI/CD pipelines and containerization using Git, Jenkins, and Docker</li>
+              <li>Streamlined deployment processes across multiple environments</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card card-soft reveal" style="--d:360ms">
+          <span class="experience-date">October 2019 - January 2022</span>
+          <h3 class="experience-company">Ekstasis Technologies Pvt Ltd</h3>
+          <div class="experience-position">DevOps Engineer</div>
+          <div class="experience-content">
+            <ul>
+              <li>Configured and managed cloud infrastructure using AWS services (EC2, S3, RDS, VPC, IAM)</li>
+              <li>Implemented monitoring solutions and automated routine tasks</li>
+              <li>Collaborated with development teams to improve deployment processes</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-title">
-          <span class="subtitle">Get In Touch</span>
-          <h2>Contact Me</h2>
-          <p class="title-description">Let's discuss your next project or opportunity</p>
-        </div>
+    </div>
+  </section>
 
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="contact-icon">📍</div>
-            <h3>Location</h3>
-            <p>Mumbai, India</p>
+  <!-- Projects -->
+  <section class="section soft" id="projects">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="subtitle">Portfolio</span>
+        <h2>Featured Projects</h2>
+        <p class="title-description">Some of my recent DevOps and cloud projects.</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card card-soft reveal">
+          <div class="project-image" style="background-image: url('images/proj_1.png')">
+            <div class="project-overlay">
+              <a href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster" class="btn btn-primary-custom btn-custom">View</a>
+            </div>
           </div>
-          <div class="contact-card">
-            <div class="contact-icon">📞</div>
-            <h3>Phone</h3>
-            <p>+91-9304277008</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">📧</div>
-            <h3>Email</h3>
-            <p>chandan.cloudops@gmail.com</p>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">💼</div>
-            <h3>Resume</h3>
-            <a href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
+          <div class="project-content">
+            <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
+            <p class="project-description">Secure guide for isolated Kubernetes clusters with controlled artifacts.</p>
           </div>
         </div>
 
-        <div class="text-center mt-5">
-          <div class="mb-3">
-            <a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-outline-custom btn-custom me-2">LinkedIn</a>
-            <a href="https://github.com/chandan-cloudops" class="btn btn-outline-custom btn-custom me-2">GitHub</a>
-            <a href="https://hashnode.com/@chandan-cloudops" class="btn btn-outline-custom btn-custom">Blog</a>
+        <div class="project-card card-soft reveal" style="--d:120ms">
+          <div class="project-image" style="background-image: url('images/proj_2.png')">
+            <div class="project-overlay">
+              <a href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2" class="btn btn-primary-custom btn-custom">View</a>
+            </div>
           </div>
-          <p class="text-muted">Have a question? <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="text-decoration-none">Click Here</a></p>
+          <div class="project-content">
+            <h3 class="project-title">Azure AKS on Custom VNet</h3>
+            <p class="project-description">AKS deployment with NGINX Ingress, External DNS and SSL using Terraform.</p>
+          </div>
+        </div>
+
+        <div class="project-card card-soft reveal" style="--d:240ms">
+          <div class="project-image" style="background-image: url('images/proj_3.png')">
+            <div class="project-overlay">
+              <a href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03" class="btn btn-primary-custom btn-custom">View</a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Private AKS with Bastion</h3>
+            <p class="project-description">Private AKS architecture using Bastion + private ACR for secure deployments.</p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 Chandan Kumar. All rights reserved.</p>
+      <div class="text-center mt-4 reveal">
+        <a href="https://github.com/chandan-cloudops" class="btn btn-outline-custom btn-custom">View More on GitHub</a>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- Bootstrap & JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-      // Navigation scroll effect
-      window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 100) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-title reveal">
+        <span class="subtitle">Get In Touch</span>
+        <h2>Contact Me</h2>
+        <p class="title-description">Let's discuss your next project or opportunity.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card card-soft reveal">
+          <div class="contact-icon">📍</div>
+          <h3>Location</h3>
+          <p>Mumbai, India</p>
+        </div>
+
+        <div class="contact-card card-soft reveal" style="--d:90ms">
+          <div class="contact-icon">📞</div>
+          <h3>Phone</h3>
+          <p><a href="tel:+919304277008" style="color:inherit; text-decoration:none;">+91-9304277008</a></p>
+        </div>
+
+        <div class="contact-card card-soft reveal" style="--d:180ms">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <p><a href="mailto:chandan.cloudops@gmail.com" style="color:inherit; text-decoration:none;">chandan.cloudops@gmail.com</a></p>
+        </div>
+
+        <div class="contact-card card-soft reveal" style="--d:270ms">
+          <div class="contact-icon">💼</div>
+          <h3>Resume</h3>
+          <a href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link" class="btn btn-primary-custom btn-custom" target="_blank">Download</a>
+        </div>
+      </div>
+
+      <div class="text-center mt-5 reveal">
+        <div class="mb-3">
+          <a href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/" class="btn btn-outline-custom btn-custom me-2">LinkedIn</a>
+          <a href="https://github.com/chandan-cloudops" class="btn btn-outline-custom btn-custom me-2">GitHub</a>
+          <a href="https://hashnode.com/@chandan-cloudops" class="btn btn-outline-custom btn-custom">Blog</a>
+        </div>
+        <p class="text-muted" style="color: var(--muted2) !important; font-weight: 800;">
+          Have a question? <a href="https://forms.gle/ztB6nrcshJAiBraF6" class="text-decoration-none" style="color: var(--green); font-weight: 900;">Click Here</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin:0;">&copy; <span id="year"></span> Chandan Kumar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap & JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mark JS enabled (important for reveal animation safety)
+    document.documentElement.classList.add('js');
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+
+      // Top progress
+      const doc = document.documentElement;
+      const height = doc.scrollHeight - doc.clientHeight;
+      const pct = height > 0 ? (doc.scrollTop / height) * 100 : 0;
+      document.getElementById('topProgress').style.width = pct + '%';
+    }, { passive: true });
+
+    // Cursor glow
+    const glow = document.getElementById('cursorGlow');
+    window.addEventListener('mousemove', (e) => {
+      glow.style.setProperty('--mx', e.clientX + 'px');
+      glow.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
+
+    // Typing animation (cleaner)
+    const typingText = document.getElementById('typing-text');
+    const texts = ['Kubernetes', 'Terraform', 'CI/CD', 'Observability', 'GitOps'];
+    let textIndex = 0, charIndex = 0, isDeleting = false;
+
+    function type() {
+      const current = texts[textIndex];
+      typingText.textContent = isDeleting ? current.substring(0, charIndex--) : current.substring(0, charIndex++);
+      let speed = isDeleting ? 45 : 85;
+
+      if (!isDeleting && charIndex === current.length + 1) { isDeleting = true; speed = 900; }
+      if (isDeleting && charIndex === 0) { isDeleting = false; textIndex = (textIndex + 1) % texts.length; speed = 250; }
+      setTimeout(type, speed);
+    }
+    type();
+
+    // Tech grid creation
+    function createTechGrid() {
+      const techGrid = document.getElementById('techGrid');
+      const techTools = [
+        { name: 'AWS', image: 'images/aws.png' },
+        { name: 'Azure', image: 'images/azure.png' },
+        { name: 'GCP', image: 'images/gcp.png' },
+        { name: 'Kubernetes', image: 'images/kubernetes.png' },
+        { name: 'Terraform', image: 'images/terraform.png' },
+        { name: 'Jenkins', image: 'images/jenkins.png' },
+        { name: 'Ansible', image: 'images/ansible.png' },
+        { name: 'ArgoCD', image: 'images/argocd.png' },
+        { name: 'GitLab', image: 'images/gitlab.jpg' },
+        { name: 'Python', image: 'images/python.png' },
+        { name: 'Prometheus', image: 'images/promethius.png' },
+        { name: 'Grafana', image: 'images/grafana.png' },
+        { name: 'SonarQube', image: 'images/sonarqube.png' },
+        { name: 'Nexus', image: 'images/nexus.png' },
+        { name: 'Trivy', image: 'images/trivy.png' },
+        { name: 'Docker', image: 'images/docker.png' },
+        { name: 'GitHub Actions', image: 'images/github-action.png' }
+      ];
+
+      techGrid.innerHTML = "";
+      techTools.forEach((tool, index) => {
+        const item = document.createElement('div');
+        item.className = 'tech-item card-soft reveal';
+        item.style.setProperty('--d', Math.min(index * 40, 320) + 'ms');
+
+        const icon = document.createElement('div');
+        icon.className = 'tech-icon';
+
+        const img = document.createElement('img');
+        img.src = tool.image;
+        img.alt = tool.name;
+        img.loading = 'lazy';
+        img.onerror = function() {
+          this.style.display = 'none';
+          icon.textContent = '⚙️';
+        };
+
+        const name = document.createElement('div');
+        name.className = 'tech-name';
+        name.textContent = tool.name;
+
+        icon.appendChild(img);
+        item.appendChild(icon);
+        item.appendChild(name);
+        techGrid.appendChild(item);
       });
+    }
+    createTechGrid();
 
-      // Typing animation
-      const typingText = document.getElementById('typing-text');
-      const texts = ['DevOps Engineer', 'Cloud Architect', 'Kubernetes Expert', 'Automation Specialist'];
-      let textIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      let typingSpeed = 100;
-
-      function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-          typingText.textContent = currentText.substring(0, charIndex - 1);
-          charIndex--;
-          typingSpeed = 50;
-        } else {
-          typingText.textContent = currentText.substring(0, charIndex + 1);
-          charIndex++;
-          typingSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentText.length) {
-          isDeleting = true;
-          typingSpeed = 2000;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
-          typingSpeed = 500;
-        }
-
-        setTimeout(type, typingSpeed);
-      }
-
-      // Tech Stack Grid with your exact images - FIXED COLORS
-      function createTechGrid() {
-        const techGrid = document.getElementById('techGrid');
-        const techTools = [
-          { name: 'AWS', image: 'images/aws.png' },
-          { name: 'Azure', image: 'images/azure.png' },
-          { name: 'GCP', image: 'images/gcp.png' },
-          { name: 'Kubernetes', image: 'images/kubernetes.png' },
-          { name: 'Terraform', image: 'images/terraform.png' },
-          { name: 'Jenkins', image: 'images/jenkins.png' },
-          { name: 'Ansible', image: 'images/ansible.png' },
-          { name: 'ArgoCD', image: 'images/argocd.png' },
-          { name: 'GitLab', image: 'images/gitlab.jpg' },
-          { name: 'Python', image: 'images/python.png' },
-          { name: 'Prometheus', image: 'images/promethius.png' },
-          { name: 'Grafana', image: 'images/grafana.png' },
-          { name: 'SonarQube', image: 'images/sonarqube.png' },
-          { name: 'Nexus', image: 'images/nexus.png' },
-          { name: 'Trivy', image: 'images/trivy.png' },
-          { name: 'Docker', image: 'images/docker.png' },
-          { name: 'GitHub Actions', image: 'images/github-action.png' }
-        ];
-
-        techTools.forEach((tool, index) => {
-          const item = document.createElement('div');
-          item.className = `tech-item delay-${index % 6}`;
-          
-          const icon = document.createElement('div');
-          icon.className = 'tech-icon';
-          
-          const img = document.createElement('img');
-          img.src = tool.image;
-          img.alt = tool.name;
-          img.onerror = function() {
-            // Fallback if image doesn't exist
-            this.style.display = 'none';
-            icon.innerHTML = `<span style="color: var(--neon-cyan); font-size: 2rem;">⚙️</span>`;
-            icon.style.background = 'transparent'; // Remove background for fallback
-          };
-          
-          const name = document.createElement('div');
-          name.className = 'tech-name';
-          name.textContent = tool.name;
-          
-          icon.appendChild(img);
-          item.appendChild(icon);
-          item.appendChild(name);
-          techGrid.appendChild(item);
-        });
-      }
-
-      // Scroll animation for all elements
-      function animateOnScroll() {
-        const elements = document.querySelectorAll('.tech-item, .experience-card, .project-card, .contact-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { 
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        });
-
-        elements.forEach(element => {
-          observer.observe(element);
-        });
-      }
-
-      // Initialize everything when page loads
-      document.addEventListener('DOMContentLoaded', () => {
-        type();
-        createTechGrid();
-        animateOnScroll();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          });
-        });
+    // Reveal on scroll (also works when opening directly at #contact)
+    function revealInView() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.92) el.classList.add('visible');
       });
-    </script>
-  </body>
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    window.addEventListener('load', revealInView);
+    setTimeout(revealInView, 50);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
 </html>
-
-
