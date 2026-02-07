@@ -1,361 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Chandan Kumar — DevOps & Cloud Engineer</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Chandan Kumar - DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation" />
-
-  <!-- Social -->
-  <meta property="og:title" content="Chandan Kumar — DevOps & Cloud Engineer" />
-  <meta property="og:description" content="DevOps & Cloud Engineer specializing in Kubernetes, AWS, Terraform, and automation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/my-profile-image.jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chandan Kumar — DevOps & Cloud Engineer</title>
+  <meta name="description" content="Chandan Kumar — DevOps & Cloud Engineer specializing in Kubernetes, AWS/Azure, Terraform, CI/CD and observability." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap (you already use it) -->
+  <!-- (Optional) Bootstrap - not required, but safe if you like it -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Your CSS (cache-bust) -->
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=10" />
 </head>
 
 <body>
-  <!-- UI Enhancers -->
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <!-- Top progress -->
+  <div class="top-progress" id="topProgress"></div>
+
+  <!-- Cursor glow -->
   <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- Animated Background -->
-  <div class="moving-bg"></div>
+  <!-- NAV -->
+  <header class="site-header" id="header">
+    <div class="container site-nav">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="brand-mark"></span>
+        <span class="brand-text">Chandan</span>
+      </a>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
-    <div class="container">
-      <a class="navbar-brand nav-brand" href="#home">Chandan Kumar</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#solutions" class="nav-link">What I do</a>
+        <a href="#tech" class="nav-link">Tech</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tech">Tech</a></li>
-          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item ms-lg-2">
-            <a class="btn btn-primary-custom btn-custom nav-cta" href="#contact">Let’s Talk</a>
-          </li>
-        </ul>
+      <div class="nav-cta">
+        <a class="btn btn-primary" href="#contact">Let’s Talk</a>
       </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <section class="hero section" id="home">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#solutions" class="m-link">What I do</a>
+      <a href="#tech" class="m-link">Tech</a>
+      <a href="#experience" class="m-link">Experience</a>
+      <a href="#projects" class="m-link">Projects</a>
+      <a href="#contact" class="m-link">Contact</a>
+      <a class="btn btn-primary m-cta" href="#contact">Let’s Talk</a>
+    </div>
+  </header>
 
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <div class="hero-badge reveal">🚀 DevOps & Cloud Engineer</div>
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="grid"></div>
+      </div>
 
-          <h1 class="hero-title reveal" style="--d:120ms">
-            Hi, I’m <span class="gradient-text">Chandan Kumar</span>
-            <br/>I build cloud platforms that scale.
+      <div class="container hero-inner">
+        <div class="hero-left reveal">
+          <div class="pill">
+            <span class="dot"></span>
+            DevOps & Cloud Engineer
+          </div>
+
+          <h1 class="hero-title">
+            I build <span class="green">reliable</span> cloud platforms
+            <br/>that scale <span class="muted">in production</span>.
           </h1>
 
-          <div class="typing-container reveal" style="--d:220ms">
-            I focus on <span id="typing-text"></span>
-          </div>
-
-          <p class="hero-description reveal" style="--d:320ms">
-            I design Kubernetes & cloud infrastructure, automate CI/CD, and build observability that keeps systems stable
-            under real production load.
+          <p class="hero-sub">
+            Kubernetes, Terraform, CI/CD, observability, security — with a focus on measurable outcomes:
+            faster deploys, stable uptime, and clean automation.
           </p>
 
-          <div class="hero-chips reveal" style="--d:420ms">
-            <span class="chip"><span class="dot"></span><b>Kubernetes</b> Prod</span>
-            <span class="chip"><span class="dot"></span><b>Terraform</b> IaC</span>
-            <span class="chip"><span class="dot"></span><b>GitOps</b> ArgoCD</span>
-            <span class="chip"><span class="dot"></span><b>Monitoring</b> Prom/Grafana</span>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="#contact">Contact</a>
           </div>
 
-          <div class="hero-buttons reveal" style="--d:520ms">
-            <a href="#projects" class="btn btn-primary-custom btn-custom">View My Work</a>
-            <a href="#contact" class="btn btn-outline-custom btn-custom">Get In Touch</a>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">60%</div>
+              <div class="stat-label">Faster deployments</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">Multi-Cloud</div>
+              <div class="stat-label">AWS / Azure / GCP</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">GitOps</div>
+              <div class="stat-label">ArgoCD workflows</div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-image reveal" style="--d:260ms">
-          <div class="profile-wrap">
-            <img src="images/my-profile-image.jpeg" alt="Chandan Kumar" class="profile-pic" />
-            <div class="profile-ring"></div>
+        <div class="hero-right reveal" style="--d:120ms">
+          <div class="profile-card">
+            <div class="profile-top">
+              <img src="images/my-profile-image.jpeg" alt="Chandan Kumar" class="profile-img" />
+              <div class="profile-meta">
+                <div class="name">Chandan Kumar</div>
+                <div class="role">Senior DevOps Engineer</div>
+                <div class="typing">
+                  Focus: <span id="typingText"></span>
+                </div>
+              </div>
+            </div>
+
             <div class="profile-badges">
-              <span class="mini-badge">AWS • Azure</span>
-              <span class="mini-badge">K8s • GitOps</span>
-              <span class="mini-badge">Terraform • CI/CD</span>
+              <span class="badge">Kubernetes</span>
+              <span class="badge">Terraform</span>
+              <span class="badge">CI/CD</span>
+              <span class="badge">Monitoring</span>
+              <span class="badge">Security</span>
+            </div>
+
+            <div class="profile-cta">
+              <a class="btn btn-primary btn-sm" href="#contact">Work with me</a>
+              <a class="btn btn-ghost btn-sm" target="_blank" rel="noreferrer"
+                 href="https://github.com/chandan-cloudops">GitHub</a>
+            </div>
+          </div>
+
+          <div class="floating-cards">
+            <div class="mini-card">
+              <div class="mini-title">Observability</div>
+              <div class="mini-sub">Prometheus • Grafana</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Infrastructure</div>
+              <div class="mini-sub">Terraform • Cloud</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Delivery</div>
+              <div class="mini-sub">GitOps • CI/CD</div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="hero-bottom reveal" style="--d:620ms">
-        <div class="metrics">
-          <div class="metric">
-            <div class="metric-value">60%</div>
-            <div class="metric-label">Faster deployments</div>
-          </div>
-          <div class="metric">
-            <div class="metric-value">Multi-Cloud</div>
-            <div class="metric-label">AWS / Azure / GCP</div>
-          </div>
-          <div class="metric">
-            <div class="metric-value">GitOps</div>
-            <div class="metric-label">ArgoCD workflows</div>
-          </div>
+    <!-- “RUGR-like” Solutions band -->
+    <section class="section" id="solutions">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="h2">What I do</h2>
+          <p class="p">
+            Clean, product-like delivery: build, secure, automate, and observe.
+          </p>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Tech -->
-  <section class="section tech-section" id="tech">
-    <div class="container">
-      <div class="section-title">
-        <span class="subtitle">Technologies</span>
-        <h2>DevOps Toolbox</h2>
-        <p class="title-description">Tools I use to ship secure, observable, and scalable infrastructure.</p>
-      </div>
-
-      <div class="tech-grid" id="techGrid"></div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section class="section" id="experience">
-    <div class="container">
-      <div class="section-title">
-        <span class="subtitle">Journey</span>
-        <h2>Work Experience</h2>
-        <p class="title-description">Roles, responsibilities, and impact delivered.</p>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-line"></div>
-
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="experience-date">October 2025 - Present</span>
-            <h3 class="experience-company">Fiat Payments.</h3>
-            <div class="experience-position">Senior DevOps Engineer</div>
-            <ul class="experience-list">
-              <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
-              <li>Implementing GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
-              <li>Optimized CI/CD pipelines, reducing deployment time by ~60%</li>
-              <li>Mentoring team members and establishing DevOps best practices</li>
+        <div class="cards-3">
+          <article class="card reveal">
+            <div class="icon">🛠️</div>
+            <h3>Platform Engineering</h3>
+            <p>Production-grade Kubernetes setup, cluster operations, and release standardization.</p>
+            <ul class="bullets">
+              <li>AKS / EKS / self-managed</li>
+              <li>Ingress, DNS, TLS</li>
+              <li>HA + scaling patterns</li>
             </ul>
-          </div>
-        </article>
+          </article>
 
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="experience-date">August 2023 - August 2025</span>
-            <h3 class="experience-company">Liane Care</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <ul class="experience-list">
-              <li>Designed CI/CD pipelines using Jenkins, ArgoCD, and GitHub Actions</li>
-              <li>Monitoring & alerting with Prometheus + Grafana for Kubernetes clusters</li>
-              <li>Infrastructure automation using Terraform and Ansible</li>
-              <li>Reduced provisioning time and human error through automation</li>
+          <article class="card reveal" style="--d:90ms">
+            <div class="icon">⚙️</div>
+            <h3>Automation & CI/CD</h3>
+            <p>Fast, reliable pipelines that reduce manual work and deployment risk.</p>
+            <ul class="bullets">
+              <li>Jenkins / GitHub Actions</li>
+              <li>GitOps with ArgoCD</li>
+              <li>Reusable templates</li>
             </ul>
-          </div>
-        </article>
+          </article>
 
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="experience-date">March 2023 - August 2023</span>
-            <h3 class="experience-company">SupplyOp Software</h3>
-            <div class="experience-position">Freelance Consultant DevOps</div>
-            <ul class="experience-list">
-              <li>Built DevOps pipeline using Jenkins, Docker, Kubernetes</li>
-              <li>Automated provisioning with Terraform and Ansible</li>
-              <li>Improved scalability and reduced infrastructure costs by ~30%</li>
+          <article class="card reveal" style="--d:180ms">
+            <div class="icon">🛡️</div>
+            <h3>Security & Observability</h3>
+            <p>Monitoring, alerting, SLO thinking, and secure delivery (shift-left).</p>
+            <ul class="bullets">
+              <li>Prometheus + Grafana</li>
+              <li>Trivy scanning</li>
+              <li>Audit & compliance ready</li>
             </ul>
-          </div>
-        </article>
-
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="experience-date">May 2022 - November 2022</span>
-            <h3 class="experience-company">Oodles Technologies</h3>
-            <div class="experience-position">Sr. Associate Consultant DevOps</div>
-            <ul class="experience-list">
-              <li>Managed end-to-end DevOps processes including SCM and builds</li>
-              <li>CI/CD and containerization using Git, Jenkins, Docker</li>
-              <li>Streamlined multi-environment release workflow</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <span class="experience-date">October 2019 - January 2022</span>
-            <h3 class="experience-company">Ekstasis Technologies Pvt Ltd</h3>
-            <div class="experience-position">DevOps Engineer</div>
-            <ul class="experience-list">
-              <li>AWS infrastructure (EC2, S3, RDS, VPC, IAM) design and operations</li>
-              <li>Implemented monitoring solutions and automated routine tasks</li>
-              <li>Partnered with dev teams to improve deployment reliability</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-title">
-        <span class="subtitle">Portfolio</span>
-        <h2>Featured Projects</h2>
-        <p class="title-description">Selected work: architecture, security, automation, and delivery.</p>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project-card reveal">
-          <div class="project-image" style="background-image:url('images/proj_1.png')">
-            <div class="project-overlay">
-              <a class="btn btn-primary-custom btn-custom" target="_blank" rel="noreferrer"
-                 href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster">View Project</a>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Air-Gapped Kubernetes Cluster</h3>
-            <p class="project-description">Secure setup for isolated clusters using registries, Terraform, and controlled artifacts.</p>
-            <div class="tag-row">
-              <span class="tag">Kubernetes</span><span class="tag">Terraform</span><span class="tag">Security</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-image" style="background-image:url('images/proj_2.png')">
-            <div class="project-overlay">
-              <a class="btn btn-primary-custom btn-custom" target="_blank" rel="noreferrer"
-                 href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2">View Project</a>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Azure AKS on Custom VNet</h3>
-            <p class="project-description">AKS deployment with ingress, DNS, and SSL on custom networking using Terraform.</p>
-            <div class="tag-row">
-              <span class="tag">Azure</span><span class="tag">AKS</span><span class="tag">Terraform</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-image" style="background-image:url('images/proj_3.png')">
-            <div class="project-overlay">
-              <a class="btn btn-primary-custom btn-custom" target="_blank" rel="noreferrer"
-                 href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03">View Project</a>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Private AKS with Bastion</h3>
-            <p class="project-description">Private AKS architecture using Bastion host and private ACR for secure deployments.</p>
-            <div class="tag-row">
-              <span class="tag">Private AKS</span><span class="tag">Bastion</span><span class="tag">ACR</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="text-center mt-5 reveal">
-        <a class="btn btn-primary-custom btn-custom" target="_blank" rel="noreferrer" href="https://github.com/chandan-cloudops">
-          View More on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-title">
-        <span class="subtitle">Get In Touch</span>
-        <h2>Contact Me</h2>
-        <p class="title-description">Let’s discuss your next project or opportunity.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-card reveal">
-          <div class="contact-icon">📍</div>
-          <h3>Location</h3>
-          <p>Mumbai, India</p>
+          </article>
         </div>
 
-        <div class="contact-card reveal">
-          <div class="contact-icon">📞</div>
-          <h3>Phone</h3>
-          <p><a class="link-clean" href="tel:+919304277008">+91-9304277008</a></p>
-        </div>
-
-        <div class="contact-card reveal">
-          <div class="contact-icon">📧</div>
-          <h3>Email</h3>
-          <p><a class="link-clean" href="mailto:chandan.cloudops@gmail.com">chandan.cloudops@gmail.com</a></p>
-        </div>
-
-        <div class="contact-card reveal">
-          <div class="contact-icon">💼</div>
-          <h3>Resume</h3>
-          <a class="btn btn-primary-custom btn-custom" target="_blank" rel="noreferrer"
-             href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link">Download</a>
+        <div class="cta-strip reveal">
+          <div>
+            <div class="cta-title">Want a production-ready DevOps setup?</div>
+            <div class="cta-sub">Let’s review your current infra and improve reliability + delivery speed.</div>
+          </div>
+          <a class="btn btn-primary" href="#contact">Book a Call</a>
         </div>
       </div>
+    </section>
 
-      <div class="social-row reveal">
-        <a class="btn btn-outline-custom btn-custom" target="_blank" rel="noreferrer"
-           href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/">LinkedIn</a>
-        <a class="btn btn-outline-custom btn-custom" target="_blank" rel="noreferrer"
-           href="https://github.com/chandan-cloudops">GitHub</a>
-        <a class="btn btn-outline-custom btn-custom" target="_blank" rel="noreferrer"
-           href="https://hashnode.com/@chandan-cloudops">Blog</a>
+    <!-- Tech -->
+    <section class="section soft" id="tech">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="h2">Tech Stack</h2>
+          <p class="p">Tools I use regularly in real projects.</p>
+        </div>
+
+        <div class="tech-grid" id="techGrid"></div>
       </div>
+    </section>
 
-      <div class="text-center mt-3 reveal">
-        <p class="muted">Have a question?
-          <a class="link-clean" target="_blank" rel="noreferrer" href="https://forms.gle/ztB6nrcshJAiBraF6">Click Here</a>
-        </p>
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="h2">Experience</h2>
+          <p class="p">My work journey and highlights.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="t-item reveal">
+            <div class="t-left">
+              <div class="t-date">Oct 2025 – Present</div>
+              <div class="t-company">Fiat Payments</div>
+              <div class="t-role">Senior DevOps Engineer</div>
+            </div>
+            <div class="t-right">
+              <ul>
+                <li>Leading cloud infrastructure design and implementation for enterprise clients</li>
+                <li>GitOps workflows with ArgoCD and Kubernetes across multiple clusters</li>
+                <li>Optimized CI/CD pipelines reducing deployment time ~60%</li>
+                <li>Mentoring and best-practice standardization</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="t-item reveal" style="--d:80ms">
+            <div class="t-left">
+              <div class="t-date">Aug 2023 – Aug 2025</div>
+              <div class="t-company">Liane Care</div>
+              <div class="t-role">Freelance DevOps Consultant</div>
+            </div>
+            <div class="t-right">
+              <ul>
+                <li>CI/CD with Jenkins, ArgoCD, GitHub Actions</li>
+                <li>Monitoring/alerting with Prometheus & Grafana</li>
+                <li>Terraform + Ansible automation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="t-item reveal" style="--d:160ms">
+            <div class="t-left">
+              <div class="t-date">Mar 2023 – Aug 2023</div>
+              <div class="t-company">SupplyOp Software</div>
+              <div class="t-role">Freelance DevOps Consultant</div>
+            </div>
+            <div class="t-right">
+              <ul>
+                <li>DevOps pipeline with Jenkins, Docker, Kubernetes</li>
+                <li>Automated provisioning with Terraform + Ansible</li>
+                <li>Reduced infrastructure costs by ~30%</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="t-item reveal" style="--d:240ms">
+            <div class="t-left">
+              <div class="t-date">May 2022 – Nov 2022</div>
+              <div class="t-company">Oodles Technologies</div>
+              <div class="t-role">Sr. Associate Consultant DevOps</div>
+            </div>
+            <div class="t-right">
+              <ul>
+                <li>CI/CD and containerization using Git, Jenkins, Docker</li>
+                <li>Streamlined deployments across environments</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="t-item reveal" style="--d:320ms">
+            <div class="t-left">
+              <div class="t-date">Oct 2019 – Jan 2022</div>
+              <div class="t-company">Ekstasis Technologies</div>
+              <div class="t-role">DevOps Engineer</div>
+            </div>
+            <div class="t-right">
+              <ul>
+                <li>AWS infra: EC2, S3, RDS, VPC, IAM</li>
+                <li>Monitoring solutions + automation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Chandan Kumar. All rights reserved.</p>
+    <!-- Projects -->
+    <section class="section soft" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="h2">Projects</h2>
+          <p class="p">A few featured articles / implementations.</p>
+        </div>
+
+        <div class="projects">
+          <article class="p-card reveal">
+            <div class="p-thumb" style="background-image:url('images/proj_1.png')"></div>
+            <div class="p-body">
+              <h3>Air-Gapped Kubernetes Cluster</h3>
+              <p>Secure setup for isolated Kubernetes clusters with controlled artifacts.</p>
+              <div class="tags">
+                <span>Kubernetes</span><span>Security</span><span>Terraform</span>
+              </div>
+              <a class="btn btn-primary btn-sm" target="_blank" rel="noreferrer"
+                 href="https://air-gap-kubernetes-cluster-setup.hashnode.dev/setting-up-an-air-gapped-kubernetes-cluster">View</a>
+            </div>
+          </article>
+
+          <article class="p-card reveal" style="--d:120ms">
+            <div class="p-thumb" style="background-image:url('images/proj_2.png')"></div>
+            <div class="p-body">
+              <h3>Azure AKS on Custom VNet</h3>
+              <p>AKS deployment with NGINX Ingress, External DNS and SSL using Terraform.</p>
+              <div class="tags">
+                <span>Azure</span><span>AKS</span><span>Terraform</span>
+              </div>
+              <a class="btn btn-primary btn-sm" target="_blank" rel="noreferrer"
+                 href="https://medium.com/@chandan.cloudops/deploying-an-azure-aks-cluster-on-a-custom-virtual-network-using-terraform-with-nginx-ingress-8494089b72c2">View</a>
+            </div>
+          </article>
+
+          <article class="p-card reveal" style="--d:240ms">
+            <div class="p-thumb" style="background-image:url('images/proj_3.png')"></div>
+            <div class="p-body">
+              <h3>Private AKS with Bastion</h3>
+              <p>Private AKS architecture using Bastion host and private ACR for secure deployments.</p>
+              <div class="tags">
+                <span>Private AKS</span><span>Bastion</span><span>ACR</span>
+              </div>
+              <a class="btn btn-primary btn-sm" target="_blank" rel="noreferrer"
+                 href="https://medium.com/@chandan.cloudops/azure-private-aks-with-bastion-host-and-azure-container-registry-ea30f9ae2b03">View</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="center reveal">
+          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://github.com/chandan-cloudops">
+            View more on GitHub →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="h2">Contact</h2>
+          <p class="p">Let’s build something reliable.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="c-card reveal">
+            <div class="c-ico">📍</div>
+            <div class="c-title">Location</div>
+            <div class="c-val">Mumbai, India</div>
+          </div>
+
+          <div class="c-card reveal" style="--d:90ms">
+            <div class="c-ico">📞</div>
+            <div class="c-title">Phone</div>
+            <a class="c-val link" href="tel:+919304277008">+91-9304277008</a>
+          </div>
+
+          <div class="c-card reveal" style="--d:180ms">
+            <div class="c-ico">📧</div>
+            <div class="c-title">Email</div>
+            <a class="c-val link" href="mailto:chandan.cloudops@gmail.com">chandan.cloudops@gmail.com</a>
+          </div>
+
+          <div class="c-card reveal" style="--d:270ms">
+            <div class="c-ico">💼</div>
+            <div class="c-title">Resume</div>
+            <a class="btn btn-primary btn-sm" target="_blank" rel="noreferrer"
+               href="https://drive.google.com/file/d/1VDTCVkI8rqGmoXyxSQGZxygJWtWBYZkL/view?usp=drive_link">Download</a>
+          </div>
+        </div>
+
+        <div class="social reveal">
+          <a class="btn btn-ghost btn-sm" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/chandan-kumar-0769ab21b/">LinkedIn</a>
+          <a class="btn btn-ghost btn-sm" target="_blank" rel="noreferrer" href="https://github.com/chandan-cloudops">GitHub</a>
+          <a class="btn btn-ghost btn-sm" target="_blank" rel="noreferrer" href="https://hashnode.com/@chandan-cloudops">Blog</a>
+          <a class="btn btn-ghost btn-sm" target="_blank" rel="noreferrer" href="https://forms.gle/ztB6nrcshJAiBraF6">Question Form</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container foot">
+      <div class="foot-left">
+        <div class="brand-line">
+          <span class="brand-mark sm"></span> Chandan Kumar
+        </div>
+        <div class="foot-sub">DevOps • Cloud • Kubernetes • Automation</div>
+      </div>
+      <div class="foot-right">
+        <span>© <span id="year"></span> All rights reserved.</span>
+      </div>
     </div>
   </footer>
 
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- JS (cache-bust + defer) -->
-  <script defer src="js/main.js?v=4"></script>
+  <script defer src="js/main.js?v=10"></script>
 </body>
 </html>
